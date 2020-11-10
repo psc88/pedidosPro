@@ -5,6 +5,7 @@
  */
 package controller;
 
+import view.ViewLogin;
 import view.ViewOrder;
 
 /**
@@ -17,8 +18,7 @@ public class ControllerMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ViewOrder view = new ViewOrder();
-        view.setVisible(true);
+        ControllerLogin.mostrar();
     }
     
 }

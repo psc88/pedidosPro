@@ -7,8 +7,8 @@ package model;
 
 /**
  *
- * @author veliz
+ * @author psc88
  */
-public class order {
+public class products {
     
 }
