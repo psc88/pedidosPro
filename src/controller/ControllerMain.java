@@ -3,19 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlador;
+package controller;
+
+import view.ViewOrder;
 
 /**
  *
  * @author psc88
  */
-public class Principal {
+public class ControllerMain {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("HOLAAAAAA");
+        ViewOrder view = new ViewOrder();
+        view.setVisible(true);
     }
     
 }
