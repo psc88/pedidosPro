@@ -9,6 +9,6 @@ package model;
  *
  * @author psc88
  */
-public class orderdetails {
+public class Orderdetails {
     
 }

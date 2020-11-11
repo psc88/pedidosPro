@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controller.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author veliz
@@ -249,7 +250,8 @@ public class ViewOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_quantityFocusLost
 
     private void buttonFinishOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFinishOrderActionPerformed
-        ControllerOrder.buttonFinishOrder();
+     
+        // ControllerOrder.buttonFinishOrder();
     }//GEN-LAST:event_buttonFinishOrderActionPerformed
 
     /**

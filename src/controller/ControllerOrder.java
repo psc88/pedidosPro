@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.*;
+import model.*;
 
 public class ControllerOrder {
     public static ViewOrder view = new ViewOrder();
@@ -48,7 +50,23 @@ public class ControllerOrder {
     }
     
     public static void actionAdd(){
-    
+        boolean existe = false;  
+        try {
+            Connection c = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/classicmodels","root","");
+            PreparedStatement s = c.prepareStatement(
+                    "select * from customers where customerNumber=? ");
+            s.setString(1,view.getCustomer().getText());
+            ResultSet res = s.executeQuery();
+            
+            existe=res.next();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        if(existe){
+        
         Object[] fila = new Object[6];
         fila[0] = linea++;
         fila[1] = view.getCode().getText();
@@ -63,11 +81,35 @@ public class ControllerOrder {
         
         DefaultTableModel datos = (DefaultTableModel) view.getOrdertable().getModel();
         datos.addRow(fila);
+        
+        }
+             
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Cliente no existente.","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+            
+        
+        
     
     }
     
-    public static void buttonFinishOrder(){
-        
+    public static void buttonFinishOrder( Order o){
+        try {
+            Connection c = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/classicmodels","root","");
+            
+            PreparedStatement s = c.prepareStatement(
+                    "INSERT INTO orders (orderNumber,orderDate,customerNumber) values (?,?,?) ");
+            
+//            s.setString(1, o.getgetDate());
+//            s.setDouble(2, prod.getPrecio());
+            
+            s.executeUpdate();
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
     
     
