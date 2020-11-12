@@ -5,6 +5,7 @@
  */
 package controller;
 
+import model.DB;
 import view.ViewLogin;
 import view.ViewOrder;
 
@@ -17,8 +18,11 @@ public class ControllerMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
+        DB.getConnection();
+        
         ControllerLogin.mostrar();
+        // ControllerProduct.show();
     }
     
 }

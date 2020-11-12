@@ -1,9 +1,6 @@
 
 package controller;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.*;
@@ -18,25 +15,14 @@ public class ControllerOrder {
     public static double totalVenta;
     public static int linea = 1;
     
-    public static void focusLostCode(){
-    
-        try {
-            Connection c = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/classicmodels","root","");
-            PreparedStatement s = c.prepareStatement(
-                    "select * from products where productCode=? ");
-            s.setString(1,view.getCode().getText());
-            ResultSet res = s.executeQuery();
-            
-            if (res.next()){
-                String nombre = res.getString("productName");
-                String precio = res.getString("buyPrice");
-                view.getDescription().setText(nombre);
-                view.getPrice().setText(precio);
-            }
-            
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+    public static void focusLostCode() throws SQLException{
+        ResultSet res = DB.getProduct(view.getCode().getText());
+ 
+        if (res.next()){
+            String nombre = res.getString("productName");
+            String precio = res.getString("buyPrice");
+            view.getDescription().setText(nombre);
+            view.getPrice().setText(precio);
         }
     }
     
