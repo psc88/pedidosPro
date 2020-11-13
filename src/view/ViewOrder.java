@@ -11,11 +11,15 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controller.*;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
  * @author veliz
  */
+// TODO: Add a new view with master form to sealect an order and then show products. See class 15.
 public class ViewOrder extends javax.swing.JFrame {
 
     /**
@@ -238,7 +242,11 @@ public class ViewOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_totalOrderActionPerformed
 
     private void codeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codeFocusLost
-        ControllerOrder.focusLostCode();
+        try {
+            ControllerOrder.focusLostCode();
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_codeFocusLost
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed

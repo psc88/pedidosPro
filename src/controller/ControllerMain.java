@@ -6,8 +6,7 @@
 package controller;
 
 import model.DB;
-import view.ViewLogin;
-import view.ViewOrder;
+import view.*;
 
 /**
  *
@@ -21,8 +20,13 @@ public class ControllerMain {
     public static void main(String[] args) {        
         DB.getConnection();
         
-        ControllerLogin.mostrar();
-        // ControllerProduct.show();
+        // ControllerLogin.mostrar();
+        ControllerProduct.show();
+        //mostrar();
     }
     
+    public static ViewMain view = new ViewMain();
+    
+    public static void mostrar() { view.setVisible(true); };
+    public static void ocultar() { view.setVisible(false); };
 }
