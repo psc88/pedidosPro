@@ -12,13 +12,13 @@ package model;
 public class Customer {
     private int customerNumber;
     private String customerName;
-    private String contactLastName;
     private String contactFirstName;
+    private String contactLastName;
     private String phone;
     private String addressLine1;
     private String addressLine2;
     private String city;
-    private String state;
+    private String stateField;
     private String postalCode;
     private String country;
     private int salesRepEmployeeNumber;
@@ -27,16 +27,16 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(int customerNumber, String customerName, String contactLastName, String contactFirstName, String phone, String addressLine1, String addressLine2, String city, String state, String postalCode, String country, int salesRepEmployeeNumber, double creditLimit) {
+    public Customer(int customerNumber, String customerName, String contactFirstName, String contactLastName, String phone, String addressLine1, String addressLine2, String city, String stateField, String postalCode, String country, int salesRepEmployeeNumber, double creditLimit) {
         this.customerNumber = customerNumber;
         this.customerName = customerName;
-        this.contactLastName = contactLastName;
         this.contactFirstName = contactFirstName;
+        this.contactLastName = contactLastName;
         this.phone = phone;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.city = city;
-        this.state = state;
+        this.stateField = stateField;
         this.postalCode = postalCode;
         this.country = country;
         this.salesRepEmployeeNumber = salesRepEmployeeNumber;
@@ -50,13 +50,13 @@ public class Customer {
     public String getCustomerName() {
         return customerName;
     }
-
-    public String getContactLastName() {
-        return contactLastName;
-    }
-
+    
     public String getContactFirstName() {
         return contactFirstName;
+    }
+    
+    public String getContactLastName() {
+        return contactLastName;
     }
 
     public String getPhone() {
@@ -75,8 +75,8 @@ public class Customer {
         return city;
     }
 
-    public String getState() {
-        return state;
+    public String getStateField() {
+        return stateField;
     }
 
     public String getPostalCode() {
@@ -103,12 +103,12 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public void setContactLastName(String contactLastName) {
-        this.contactLastName = contactLastName;
-    }
-
     public void setContactFirstName(String contactFirstName) {
         this.contactFirstName = contactFirstName;
+    }
+    
+    public void setContactLastName(String contactLastName) {
+        this.contactLastName = contactLastName;
     }
 
     public void setPhone(String phone) {
@@ -127,8 +127,8 @@ public class Customer {
         this.city = city;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setStateField(String stateField) {
+        this.stateField = stateField;
     }
 
     public void setPostalCode(String postalCode) {
@@ -146,6 +146,4 @@ public class Customer {
     public void setCreditLimit(double creditLimit) {
         this.creditLimit = creditLimit;
     }
-    
-    
 }

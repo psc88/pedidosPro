@@ -241,7 +241,7 @@ public class ViewProduct extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifyActionPerformed
-        ControllerProduct.modifyProduct(productCode.getText());
+        ControllerProduct.modifyProduct();
     }//GEN-LAST:event_buttonModifyActionPerformed
 
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed

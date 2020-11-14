@@ -61,10 +61,11 @@ public class DB {
         }
     }
     
-    public static void modifyProduct(Product product, String selectedProductCode) {
+    public static void modifyProduct(Product product) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE products SET productCode = ?, productName = ?, productLine = ?, productScale = ?, productVendor = ?, productDescription = ?, quantityInStock = ?, buyPrice = ?, MSRP = ? WHERE productCode = ?");
-                        
+            
+            // TODO: Check updating a product code
             statement.setString(1, product.getProductCode());
             statement.setString(2, product.getProductName());
             statement.setString(3, product.getProductLine());
@@ -74,8 +75,7 @@ public class DB {
             statement.setInt(7, product.getQuantityInStock());
             statement.setDouble(8, product.getBuyPrice());
             statement.setDouble(9, product.getMSRP());
-            statement.setString(10, selectedProductCode);
-
+            statement.setString(10, product.getProductCode());
             
             statement.execute();
         } catch (Exception e) {
@@ -126,23 +126,17 @@ public class DB {
     
     public static ResultSet getProduct(String productCode) {
         ResultSet res = null;
-        
+
         try {
             PreparedStatement s = connection.prepareStatement("select * from products where productCode=? ");
             s.setString(1, productCode);
-            res = s.executeQuery();            
+            res = s.executeQuery();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+
         return res;
     }
-
-    // Customer methods
-    public static void addCustomer(Product product) {}
-    public static void modifyCustomer() {}
-    public static void deleteCustomer() {}
-    public static void getCustomers() {}
     
     // ProductLine methods
     public static void addProductLine(ProductLine productLine) {       
@@ -278,5 +272,103 @@ public class DB {
         }
         
         return payments;
+    }
+    
+    // Customer methods
+    public static void addCustomer(Customer customer) {       
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO customers (customerNumber, customerName, contactFirstName, contactLastName, phone, addressLine1, addressLine2, city, state, postalCode, country, salesRepEmployeeNumber, creditLimit) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        
+            statement.setInt(1, customer.getCustomerNumber());
+            statement.setString(2, customer.getCustomerName());
+            statement.setString(3, customer.getContactFirstName());
+            statement.setString(4, customer.getContactLastName());
+            statement.setString(5, customer.getPhone());
+            statement.setString(6, customer.getAddressLine1());
+            statement.setString(7, customer.getAddressLine2());
+            statement.setString(8, customer.getCity());
+            statement.setString(9, customer.getStateField());
+            statement.setString(10, customer.getPostalCode());
+            statement.setString(11, customer.getCountry());
+            statement.setInt(12, customer.getSalesRepEmployeeNumber());
+            statement.setDouble(13, customer.getCreditLimit());
+            
+            statement.execute();
+        } catch (SQLException e) {
+            System.out.println("Error al insertar cliente!");
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static void modifyProduct(Customer customer) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("UPDATE customers SET customerNumber = ?, customerName = ?, contactFirstName = ?, contactLastName = ?, phone = ?, addressLine1 = ?, addressLine2 = ?, city = ?, state = ?, postalCode = ?, country = ?, salesRepEmployeeNumber = ?, creditLimit = ? WHERE customerNumber = ?");
+            
+            statement.setInt(1, customer.getCustomerNumber());
+            statement.setString(2, customer.getCustomerName());
+            statement.setString(3, customer.getContactFirstName());
+            statement.setString(4, customer.getContactLastName());
+            statement.setString(5, customer.getPhone());
+            statement.setString(6, customer.getAddressLine1());
+            statement.setString(7, customer.getAddressLine2());
+            statement.setString(8, customer.getCity());
+            statement.setString(9, customer.getStateField());
+            statement.setString(10, customer.getPostalCode());
+            statement.setString(11, customer.getCountry());
+            statement.setInt(12, customer.getSalesRepEmployeeNumber());
+            statement.setDouble(13, customer.getCreditLimit());
+            statement.setInt(14, customer.getCustomerNumber());
+
+            statement.execute();
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar cliente!");
+            System.out.println(e);
+        }
+    }
+    
+    public static void deleteCustomer(String selectedCustomerNumber) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM customers WHERE customerNumber = ?");
+                        
+            statement.setString(1, selectedCustomerNumber);
+            statement.execute();
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar cliente!");
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static ArrayList<Customer> getCustomers() {
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+        
+        try {
+            PreparedStatement s = connection.prepareStatement("select * from customers");
+            ResultSet res = s.executeQuery();
+
+            while(res.next()) {
+                Customer customer = new Customer();
+                
+                customer.setCustomerNumber(res.getInt("customerNumber"));
+                customer.setCustomerName(res.getString("customerName"));
+                customer.setContactFirstName(res.getString("contactFirstName"));
+                customer.setContactLastName(res.getString("contactLastName"));
+                customer.setPhone(res.getString("phone"));
+                customer.setAddressLine1(res.getString("addressLine1"));
+                customer.setAddressLine2(res.getString("addressLine2"));
+                customer.setCity(res.getString("city"));
+                customer.setStateField(res.getString("state"));
+                customer.setPostalCode(res.getString("postalCode"));
+                customer.setCountry(res.getString("country"));
+                customer.setSalesRepEmployeeNumber(res.getInt("salesRepEmployeeNumber"));
+                customer.setCreditLimit(res.getDouble("creditLimit"));
+
+                customers.add(customer);
+            }            
+        } catch (SQLException e) {
+            System.out.println("Error al obtener clientes!");
+            System.out.println(e.getMessage());
+        }
+        
+        return customers;
     }
 }

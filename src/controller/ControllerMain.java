@@ -23,7 +23,8 @@ public class ControllerMain {
         // ControllerLogin.mostrar();
         // ControllerProduct.show();
         // ControllerProductLine.show();
-        ControllerPayment.show();
+        // ControllerPayment.show();
+        ControllerCustomer.show();
         //mostrar();
     }
     

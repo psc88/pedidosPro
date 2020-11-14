@@ -90,6 +90,12 @@ public class ViewOrder extends javax.swing.JFrame {
 
         jLabel8.setText("Subtotal ");
 
+        customer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customerActionPerformed(evt);
+            }
+        });
+
         quantity.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 quantityFocusLost(evt);
@@ -261,6 +267,10 @@ public class ViewOrder extends javax.swing.JFrame {
      
         // ControllerOrder.buttonFinishOrder();
     }//GEN-LAST:event_buttonFinishOrderActionPerformed
+
+    private void customerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerActionPerformed
 
     /**
      * @param args the command line arguments

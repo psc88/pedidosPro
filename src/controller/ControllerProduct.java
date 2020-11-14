@@ -51,9 +51,9 @@ public class ControllerProduct {
         DB.addProduct(product);
     }
     
-    public static void modifyProduct(String selectedProductCode) {
+    public static void modifyProduct() {
         Product product = buildProductInstance();
-        DB.modifyProduct(product, selectedProductCode);
+        DB.modifyProduct(product);
     }
     
     public static void deleteProduct(String selectedProductCode) {
