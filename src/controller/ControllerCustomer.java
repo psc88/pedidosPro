@@ -18,9 +18,9 @@ public class ControllerCustomer {
     public static ViewCustomer view = new ViewCustomer();  
     
     public static void show() {
-        
         view.setVisible(true);
-        getCustomers();
+        // Initial load
+        getCustomersAndInsertInTable();
     };
     
     public static void hide() {
@@ -50,18 +50,28 @@ public class ControllerCustomer {
     public static void addCustomer() {
         Customer customer = buildCustomerInstance();
         DB.addCustomer(customer);
+        
+        clearFields();
+        getCustomersAndInsertInTable();
     }
     
     public static void modifyCustomer() {
         Customer customer = buildCustomerInstance();
-        DB.modifyProduct(customer);
+        DB.modifyCustomer(customer);
+        
+        clearFields();
+        getCustomersAndInsertInTable();
     }
     
-    public static void deleteCustomer(String selectedCustomerNumber) {
-        DB.deleteProduct(selectedCustomerNumber);
+    public static void deleteCustomer() {
+        int customerNumber = Integer.parseInt(view.getCustomerNumber().getText());
+        DB.deleteCustomer(customerNumber);
+        
+        clearFields();
+        getCustomersAndInsertInTable();
     }
     
-    public static void getCustomers() {
+    public static void getCustomersAndInsertInTable() {
         DefaultTableModel data = (DefaultTableModel) view.getTable().getModel();      
         ArrayList<Customer> customers = DB.getCustomers();
         
@@ -122,5 +132,21 @@ public class ControllerCustomer {
             view.getSalesRepEmployeeNumber().setText(salesRepEmployeeNumberValue);
             view.getCreditLimit().setText(creditLimitValue);
         }
+    }
+    
+    public static void clearFields() {
+        view.getCustomerNumber().setText("");
+        view.getCustomerName().setText("");
+        view.getContactFirstName().setText("");
+        view.getContactLastName().setText("");
+        view.getPhone().setText("");
+        view.getAddressLine1().setText("");
+        view.getAddressLine2().setText("");
+        view.getCity().setText("");
+        view.getStateField().setText("");
+        view.getPostalCode().setText("");
+        view.getCountry().setText("");
+        view.getSalesRepEmployeeNumber().setText("");
+        view.getCreditLimit().setText("");
     }
 }

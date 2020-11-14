@@ -19,9 +19,10 @@ public class ControllerProductLine {
     public static ViewProductLine view = new ViewProductLine();  
     
     public static void show() {
-        
         view.setVisible(true);
-        getProductLines();
+
+        // First load
+        getProductLinesAndInsertInTable();
     };
     
     public static void hide() {
@@ -42,18 +43,28 @@ public class ControllerProductLine {
     public static void addProductLine() {
         ProductLine productLine = buildProductLineInstance();
         DB.addProductLine(productLine);
+        
+        clearFields();
+        getProductLinesAndInsertInTable();
     }
     
     public static void modifyProductLine() {
         ProductLine productLine = buildProductLineInstance();
         DB.modifyProductLine(productLine);
+        
+        clearFields();
+        getProductLinesAndInsertInTable();
     }
     
-    public static void deleteProductLine(String selectedProductCode) {
-        DB.deleteProductLine(selectedProductCode);
+    public static void deleteProductLine() {
+        String productLine = view.getProductLine().getText();
+        DB.deleteProductLine(productLine);
+        
+        clearFields();
+        getProductLinesAndInsertInTable();
     }
     
-    public static void getProductLines() {
+    public static void getProductLinesAndInsertInTable() {
         DefaultTableModel data = (DefaultTableModel) view.getTable().getModel();      
         ArrayList<ProductLine> productLines = DB.getProductLines();
         
@@ -70,5 +81,29 @@ public class ControllerProductLine {
 
             data.addRow(row);
         }
+    }
+    
+    public static void loadFieldsOnSelectTableRow() {
+        int selectedRow = view.getTable().getSelectedRow();
+        DefaultTableModel data = (DefaultTableModel) view.getTable().getModel();
+
+        if (selectedRow >= 0) {
+            String productLineValue = data.getValueAt(selectedRow, 0).toString();
+            String textDescriptionValue = data.getValueAt(selectedRow, 1).toString();
+            String htmlDescriptionValue = data.getValueAt(selectedRow, 2) != null  ? data.getValueAt(selectedRow, 2).toString() : "";
+            String imageValue = data.getValueAt(selectedRow, 3) != null ? data.getValueAt(selectedRow, 3).toString() : "";
+
+            view.getProductLine().setText(productLineValue);
+            view.getTextDescription().setText(textDescriptionValue);
+            view.getHtmlDescription().setText(htmlDescriptionValue);
+            view.getImage().setText(imageValue);
+        }
+    }
+    
+    public static void clearFields() {
+        view.getProductLine().setText("");
+        view.getTextDescription().setText("");
+        view.getHtmlDescription().setText("");
+        view.getImage().setText("");
     }
 }

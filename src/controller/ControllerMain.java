@@ -22,14 +22,14 @@ public class ControllerMain {
         
         // ControllerLogin.mostrar();
         // ControllerProduct.show();
-        // ControllerProductLine.show();
+        ControllerProductLine.show();
         // ControllerPayment.show();
-        ControllerCustomer.show();
-        //mostrar();
+        // ControllerCustomer.show();
+        // show();
     }
     
     public static ViewMain view = new ViewMain();
     
-    public static void mostrar() { view.setVisible(true); };
-    public static void ocultar() { view.setVisible(false); };
+    public static void show() { view.setVisible(true); };
+    public static void hide() { view.setVisible(false); };
 }

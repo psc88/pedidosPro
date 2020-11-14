@@ -8,6 +8,8 @@ package model;
 import static controller.ControllerOrder.view;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -55,9 +57,9 @@ public class DB {
             statement.setDouble(9, product.getMSRP());
             
             statement.execute();
-        } catch (Exception e) {
-            System.out.println("Error al insertar producto!");
-            System.out.println(e);
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al insertar producto!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -78,9 +80,9 @@ public class DB {
             statement.setString(10, product.getProductCode());
             
             statement.execute();
-        } catch (Exception e) {
-            System.out.println("Error al actualizar producto!");
-            System.out.println(e);
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al actualizar producto!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -90,9 +92,9 @@ public class DB {
                         
             statement.setString(1, selectedProductCode);
             statement.execute();
-        } catch (Exception e) {
-            System.out.println("Error al eliminar producto!");
-            System.out.println(e);
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al eliminar producto!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -100,7 +102,7 @@ public class DB {
         ArrayList<Product> products = new ArrayList<Product>();
         
         try {
-            PreparedStatement s = connection.prepareStatement("select * from products");
+            PreparedStatement s = connection.prepareStatement("select * from products ORDER BY productCode DESC");
             ResultSet res = s.executeQuery();
 
             while(res.next()) {
@@ -118,6 +120,7 @@ public class DB {
                 products.add(product);
             }            
         } catch (SQLException e) {
+            showMessageDialog(null, "Error al obtener productos!", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
         
@@ -132,6 +135,7 @@ public class DB {
             s.setString(1, productCode);
             res = s.executeQuery();
         } catch (SQLException e) {
+            showMessageDialog(null, "Error al obtener producto!", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
 
@@ -149,9 +153,9 @@ public class DB {
             statement.setString(4, productLine.getImage());
             
             statement.execute();
-        } catch (Exception e) {
-            System.out.println("Error al insertar línea de producto!");
-            System.out.println(e);
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al insertar línea de producto!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -165,9 +169,9 @@ public class DB {
             statement.setString(4, productLine.getProductLine());
             
             statement.execute();
-        } catch (Exception e) {
-            System.out.println("Error al actualizar línea de producto!");
-            System.out.println(e);
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al actualizar línea de producto!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -177,9 +181,9 @@ public class DB {
                         
             statement.setString(1, selectedProductLine);
             statement.execute();
-        } catch (Exception e) {
-            System.out.println("Error al eliminar línea de producto!");
-            System.out.println(e);
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al eliminar línea de producto!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -187,7 +191,7 @@ public class DB {
         ArrayList<ProductLine> productLines = new ArrayList<ProductLine>();
         
         try {
-            PreparedStatement s = connection.prepareStatement("select * from productLines");
+            PreparedStatement s = connection.prepareStatement("select * from productLines ORDER BY productLine DESC");
             ResultSet res = s.executeQuery();
 
             while(res.next()) {
@@ -200,6 +204,7 @@ public class DB {
                 productLines.add(productLine);
             }            
         } catch (SQLException e) {
+            showMessageDialog(null, "Error al obtener líneas de productos!", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
         
@@ -217,9 +222,9 @@ public class DB {
             statement.setDouble(4, payment.getAmount());
             
             statement.execute();
-        } catch (Exception e) {
-            System.out.println("Error al insertar pago!");
-            System.out.println(e);
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al insertar pago!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -233,9 +238,9 @@ public class DB {
             statement.setString(4, payment.getCheckNumber());
             
             statement.execute();
-        } catch (Exception e) {
-            System.out.println("Error al actualizar pago!");
-            System.out.println(e);
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al actualizar pago!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -245,9 +250,9 @@ public class DB {
                         
             statement.setString(1, selectedCheckNumber);
             statement.execute();
-        } catch (Exception e) {
-            System.out.println("Error al eliminar pago!");
-            System.out.println(e);
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al eliminar pago!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
@@ -255,7 +260,7 @@ public class DB {
         ArrayList<Payment> payments = new ArrayList<Payment>();
         
         try {
-            PreparedStatement s = connection.prepareStatement("select * from payments");
+            PreparedStatement s = connection.prepareStatement("select * from payments ORDER BY paymentDate DESC");
             ResultSet res = s.executeQuery();
 
             while(res.next()) {
@@ -268,6 +273,7 @@ public class DB {
                 payments.add(payment);
             }            
         } catch (SQLException e) {
+            showMessageDialog(null, "Error al obtener pagos!", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
         
@@ -295,12 +301,12 @@ public class DB {
             
             statement.execute();
         } catch (SQLException e) {
-            System.out.println("Error al insertar cliente!");
+            showMessageDialog(null, "Error al insertar cliente!", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
     }
     
-    public static void modifyProduct(Customer customer) {
+    public static void modifyCustomer(Customer customer) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE customers SET customerNumber = ?, customerName = ?, contactFirstName = ?, contactLastName = ?, phone = ?, addressLine1 = ?, addressLine2 = ?, city = ?, state = ?, postalCode = ?, country = ?, salesRepEmployeeNumber = ?, creditLimit = ? WHERE customerNumber = ?");
             
@@ -321,19 +327,19 @@ public class DB {
 
             statement.execute();
         } catch (SQLException e) {
-            System.out.println("Error al actualizar cliente!");
-            System.out.println(e);
+            showMessageDialog(null, "Error al actualizar cliente!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         }
     }
     
-    public static void deleteCustomer(String selectedCustomerNumber) {
+    public static void deleteCustomer(int selectedCustomerNumber) {
         try {
             PreparedStatement statement = connection.prepareStatement("DELETE FROM customers WHERE customerNumber = ?");
                         
-            statement.setString(1, selectedCustomerNumber);
+            statement.setInt(1, selectedCustomerNumber);
             statement.execute();
         } catch (SQLException e) {
-            System.out.println("Error al eliminar cliente!");
+            showMessageDialog(null, "Error al eliminar cliente!");
             System.out.println(e.getMessage());
         }
     }
@@ -342,7 +348,7 @@ public class DB {
         ArrayList<Customer> customers = new ArrayList<Customer>();
         
         try {
-            PreparedStatement s = connection.prepareStatement("select * from customers");
+            PreparedStatement s = connection.prepareStatement("select * from customers ORDER BY customerNumber DESC");
             ResultSet res = s.executeQuery();
 
             while(res.next()) {
@@ -365,7 +371,7 @@ public class DB {
                 customers.add(customer);
             }            
         } catch (SQLException e) {
-            System.out.println("Error al obtener clientes!");
+            showMessageDialog(null, "Error al obtener clientes!", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
         

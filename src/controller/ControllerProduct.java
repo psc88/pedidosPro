@@ -21,9 +21,10 @@ public class ControllerProduct {
     public static ViewProduct view = new ViewProduct();  
     
     public static void show() {
-        
         view.setVisible(true);
-        getProducts();
+        
+        // First load
+        getProductsAndInsertInTable();
     };
     
     public static void hide() {
@@ -49,18 +50,28 @@ public class ControllerProduct {
     public static void addProduct() {
         Product product = buildProductInstance();
         DB.addProduct(product);
+        
+        clearFields();
+        getProductsAndInsertInTable();
     }
     
     public static void modifyProduct() {
         Product product = buildProductInstance();
         DB.modifyProduct(product);
+        
+        clearFields();
+        getProductsAndInsertInTable();
     }
     
-    public static void deleteProduct(String selectedProductCode) {
-        DB.deleteProduct(selectedProductCode);
+    public static void deleteProduct() {
+        String productCode = view.getProductCode().getText();
+        DB.deleteProduct(productCode);
+        
+        clearFields();
+        getProductsAndInsertInTable();
     }
     
-    public static void getProducts() {
+    public static void getProductsAndInsertInTable() {
         DefaultTableModel data = (DefaultTableModel) view.getTable().getModel();      
         ArrayList<Product> products = DB.getProducts();
         
@@ -82,5 +93,44 @@ public class ControllerProduct {
 
             data.addRow(row);
         }
+    }
+    
+    public static void loadFieldsOnSelectTableRow() {
+        int selectedRow = view.getTable().getSelectedRow();
+        DefaultTableModel data = (DefaultTableModel) view.getTable().getModel();
+
+        if (selectedRow >= 0) {
+            String productCodeValue = data.getValueAt(selectedRow, 0).toString();
+            String productNameValue = data.getValueAt(selectedRow, 1).toString();
+            String productLineValue = data.getValueAt(selectedRow, 2).toString();
+            String productScaleValue = data.getValueAt(selectedRow, 3).toString();
+            String productVendorValue = data.getValueAt(selectedRow, 4).toString();
+            String productDescriptionValue = data.getValueAt(selectedRow, 5).toString();
+            String quantityInStockValue = data.getValueAt(selectedRow, 6).toString();
+            String buyPriceValue = data.getValueAt(selectedRow, 7).toString();
+            String MSRPValue = data.getValueAt(selectedRow, 8).toString();
+
+            view.getProductCode().setText(productCodeValue);
+            view.getProductName().setText(productNameValue);
+            view.getProductLine().setText(productLineValue);
+            view.getProductScale().setText(productScaleValue);
+            view.getProductVendor().setText(productVendorValue);
+            view.getProductDescription().setText(productDescriptionValue);
+            view.getQuantityInStock().setText(quantityInStockValue);
+            view.getBuyPrice().setText(buyPriceValue);
+            view.getMSRP().setText(MSRPValue);
+        }
+    }
+    
+    public static void clearFields() {
+        view.getProductCode().setText("");
+        view.getProductName().setText("");
+        view.getProductLine().setText("");
+        view.getProductScale().setText("");
+        view.getProductVendor().setText("");
+        view.getProductDescription().setText("");
+        view.getQuantityInStock().setText("");
+        view.getBuyPrice().setText("");
+        view.getMSRP().setText("");
     }
 }

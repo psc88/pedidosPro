@@ -65,6 +65,7 @@ public class ViewCustomer extends javax.swing.JFrame {
         creditLimit = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         labelproductLine5 = new javax.swing.JLabel();
+        buttonClearFields = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,11 +92,6 @@ public class ViewCustomer extends javax.swing.JFrame {
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);
-            }
-        });
-        table.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                tableComponentShown(evt);
             }
         });
         jScrollPane1.setViewportView(table);
@@ -140,6 +136,13 @@ public class ViewCustomer extends javax.swing.JFrame {
         jLabel8.setText("Límite de crédito");
 
         labelproductLine5.setText("Nº de vendedor rep.");
+
+        buttonClearFields.setText("Limpiar campos");
+        buttonClearFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonClearFieldsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,6 +213,8 @@ public class ViewCustomer extends javax.swing.JFrame {
                                 .addComponent(buttonModify, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonClearFields)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -274,7 +279,8 @@ public class ViewCustomer extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonAdd)
                     .addComponent(buttonModify)
-                    .addComponent(buttonDelete))
+                    .addComponent(buttonDelete)
+                    .addComponent(buttonClearFields))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -285,16 +291,12 @@ public class ViewCustomer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
-        ControllerCustomer.deleteCustomer(customerNumber.getText());
+        ControllerCustomer.deleteCustomer();
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         ControllerCustomer.loadFieldsOnSelectTableRow();
     }//GEN-LAST:event_tableMouseClicked
-
-    private void tableComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tableComponentShown
-
-    }//GEN-LAST:event_tableComponentShown
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
         ControllerCustomer.addCustomer();
@@ -303,6 +305,10 @@ public class ViewCustomer extends javax.swing.JFrame {
     private void buttonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifyActionPerformed
         ControllerCustomer.modifyCustomer();
     }//GEN-LAST:event_buttonModifyActionPerformed
+
+    private void buttonClearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClearFieldsActionPerformed
+        ControllerCustomer.clearFields();
+    }//GEN-LAST:event_buttonClearFieldsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -400,6 +406,7 @@ public class ViewCustomer extends javax.swing.JFrame {
     private javax.swing.JTextField addressLine1;
     private javax.swing.JTextField addressLine2;
     private javax.swing.JButton buttonAdd;
+    private javax.swing.JButton buttonClearFields;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonModify;
     private javax.swing.JTextField city;

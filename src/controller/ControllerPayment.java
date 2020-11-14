@@ -20,7 +20,9 @@ public class ControllerPayment {
     
     public static void show() {
         view.setVisible(true);
-        getPayments();
+        
+        // First load
+        getPaymentsAndInsertInTable();
     };
     
     public static void hide() {
@@ -41,18 +43,28 @@ public class ControllerPayment {
     public static void addPayment() {
         Payment payment = buildPaymentInstance();
         DB.addPayment(payment);
+        
+        clearFields();
+        getPaymentsAndInsertInTable();
     }
     
     public static void modifyPayment() {
         Payment payment = buildPaymentInstance();
         DB.modifyPayment(payment);
+        
+        clearFields();
+        getPaymentsAndInsertInTable();
     }
     
-    public static void deletePayment(String selectedProductCode) {
-        DB.deletePayment(selectedProductCode);
+    public static void deletePayment() {
+        String checkNumber = view.getCheckNumber().getText();
+        DB.deletePayment(checkNumber);
+        
+        clearFields();
+        getPaymentsAndInsertInTable();
     }
     
-    public static void getPayments() {
+    public static void getPaymentsAndInsertInTable() {
         DefaultTableModel data = (DefaultTableModel) view.getTable().getModel();      
         ArrayList<Payment> payments = DB.getPayments();
         
@@ -69,5 +81,30 @@ public class ControllerPayment {
 
             data.addRow(row);
         }
+    }
+    
+    public static void loadFieldsOnSelectTableRow() {
+        int selectedRow = view.getTable().getSelectedRow();
+        DefaultTableModel data = (DefaultTableModel) view.getTable().getModel();
+
+        if (selectedRow >= 0) {
+            String customerNumberValue = data.getValueAt(selectedRow, 0).toString();
+            String checkNumberValue = data.getValueAt(selectedRow, 1).toString();
+            String paymentDateValue = data.getValueAt(selectedRow, 2).toString();
+            String amountValue = data.getValueAt(selectedRow, 3).toString();
+
+            view.getCustomerNumber().setText(customerNumberValue);
+            view.getCheckNumber().setText(checkNumberValue);
+            view.getPaymentDate().setText(paymentDateValue);
+            view.getAmount().setText(amountValue);
+        }
+        
+    }
+    
+    public static void clearFields() {
+        view.getCustomerNumber().setText("");
+        view.getCheckNumber().setText("");
+        view.getPaymentDate().setText("");
+        view.getAmount().setText("");
     }
 }
