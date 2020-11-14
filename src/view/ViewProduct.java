@@ -280,7 +280,6 @@ public class ViewProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_tableMouseClicked
 
     private void tableComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tableComponentShown
-        System.out.println("hola mundo");
     }//GEN-LAST:event_tableComponentShown
     
     /**

@@ -14,16 +14,16 @@ package model;
 public class Payment {
     private int customerNumber;
     private String checkNumber;
-    private String date;
+    private String paymentDate;
     private double amount;
 
     public Payment() {
     }
 
-    public Payment(int customerNumber, String checkNumber, String date, double amount) {
+    public Payment(int customerNumber, String checkNumber, String paymentDate, double amount) {
         this.customerNumber = customerNumber;
         this.checkNumber = checkNumber;
-        this.date = date;
+        this.paymentDate = paymentDate;
         this.amount = amount;
     }
 
@@ -35,8 +35,8 @@ public class Payment {
         return checkNumber;
     }
 
-    public String getDate() {
-        return date;
+    public String getPaymentDate() {
+        return paymentDate;
     }
 
     public double getAmount() {
@@ -51,8 +51,8 @@ public class Payment {
         this.checkNumber = checkNumber;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
     }
 
     public void setAmount(double amount) {

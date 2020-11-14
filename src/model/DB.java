@@ -161,7 +161,7 @@ public class DB {
         }
     }
     
-    public static void modifyProductLine(ProductLine productLine, String selectedProductLine) {
+    public static void modifyProductLine(ProductLine productLine) {
         try {
             PreparedStatement statement = connection.prepareStatement("UPDATE productLines SET textDescription = ?, htmlDescription = ?, image = ? WHERE productLine = ?");
                        
@@ -212,4 +212,71 @@ public class DB {
         return productLines;
     }
     
+    // Payment methods
+    public static void addPayment(Payment payment) {       
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO payments (customerNumber, checkNumber, paymentDate, amount) VALUE (?, ?, ?, ?)");
+                        
+            statement.setInt(1, payment.getCustomerNumber());
+            statement.setString(2, payment.getCheckNumber());
+            statement.setString(3, payment.getPaymentDate());
+            statement.setDouble(4, payment.getAmount());
+            
+            statement.execute();
+        } catch (Exception e) {
+            System.out.println("Error al insertar pago!");
+            System.out.println(e);
+        }
+    }
+    
+    public static void modifyPayment(Payment payment) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("UPDATE payments SET customerNumber = ?, paymentDate = ?, amount = ? WHERE checkNumber = ?");
+                       
+            statement.setInt(1, payment.getCustomerNumber());
+            statement.setString(2, payment.getPaymentDate());
+            statement.setDouble(3, payment.getAmount());
+            statement.setString(4, payment.getCheckNumber());
+            
+            statement.execute();
+        } catch (Exception e) {
+            System.out.println("Error al actualizar pago!");
+            System.out.println(e);
+        }
+    }
+    
+    public static void deletePayment(String selectedCheckNumber) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM payments WHERE checkNumber = ?");
+                        
+            statement.setString(1, selectedCheckNumber);
+            statement.execute();
+        } catch (Exception e) {
+            System.out.println("Error al eliminar pago!");
+            System.out.println(e);
+        }
+    }
+    
+    public static ArrayList<Payment> getPayments() {
+        ArrayList<Payment> payments = new ArrayList<Payment>();
+        
+        try {
+            PreparedStatement s = connection.prepareStatement("select * from payments");
+            ResultSet res = s.executeQuery();
+
+            while(res.next()) {
+                Payment payment = new Payment();
+                payment.setCustomerNumber(res.getInt("customerNumber"));
+                payment.setCheckNumber(res.getString("checkNumber"));
+                payment.setPaymentDate(res.getString("paymentDate"));
+                payment.setAmount(res.getDouble("amount"));         
+                
+                payments.add(payment);
+            }            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return payments;
+    }
 }

@@ -5,7 +5,9 @@
  */
 package view;
 
-import controller.*;
+import controller.ControllerPayment;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -14,13 +16,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author veliz
  */
-public class ViewProductLine extends javax.swing.JFrame {
+public class ViewPayment extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewProductLine
+     * Creates new form ViewPayment
      */
-    public ViewProductLine() {
+    public ViewPayment() {
         initComponents();
+        
+        Date date = new Date();
+        String strDateFormat = "yyyy-MM-dd";
+        SimpleDateFormat conversor = new SimpleDateFormat(strDateFormat);
+        paymentDate.setText(conversor.format(date));
     }
 
     /**
@@ -32,39 +39,23 @@ public class ViewProductLine extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        productLine = new javax.swing.JTextField();
-        textDescription = new javax.swing.JTextField();
-        labelproductName = new javax.swing.JLabel();
-        htmlDescription = new javax.swing.JTextField();
-        image = new javax.swing.JTextField();
-        buttonAdd = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         buttonModify = new javax.swing.JButton();
         labelproductLine = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         buttonDelete = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        customerNumber = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        checkNumber = new javax.swing.JTextField();
+        labelproductName = new javax.swing.JLabel();
+        paymentDate = new javax.swing.JTextField();
+        amount = new javax.swing.JTextField();
+        buttonAdd = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Century", 0, 24)); // NOI18N
-        jLabel1.setText("Línea de Producto");
-
-        jLabel2.setText("Línea de producto");
-
-        labelproductName.setText("Descripción");
-
-        buttonAdd.setText("Agregar");
-        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAddActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Ruta de imagen");
 
         buttonModify.setText("Modificar");
         buttonModify.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +64,10 @@ public class ViewProductLine extends javax.swing.JFrame {
             }
         });
 
-        labelproductLine.setText("Descripcion HTML");
+        labelproductLine.setText("Fecha");
+
+        jLabel1.setFont(new java.awt.Font("Century", 0, 24)); // NOI18N
+        jLabel1.setText("Pago");
 
         buttonDelete.setText("Eliminar");
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +75,8 @@ public class ViewProductLine extends javax.swing.JFrame {
                 buttonDeleteActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Nº de cliente");
 
         jLabel3.setFont(new java.awt.Font("Century", 0, 18)); // NOI18N
         jLabel3.setText("Listado");
@@ -90,7 +86,7 @@ public class ViewProductLine extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Línea de producto", "Descripción", "Descripción HTML", "Ruta de imagen"
+                "Nº de cliente", "Nº de cheque", "Fecha", "Monto"
             }
         ));
         table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,6 +100,17 @@ public class ViewProductLine extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(table);
+
+        labelproductName.setText("Nº de cheque");
+
+        buttonAdd.setText("Agregar");
+        buttonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAddActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Monto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,10 +132,10 @@ public class ViewProductLine extends javax.swing.JFrame {
                                         .addComponent(labelproductLine)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(productLine, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                    .addComponent(textDescription)
-                                    .addComponent(htmlDescription)
-                                    .addComponent(image)))
+                                    .addComponent(customerNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                    .addComponent(checkNumber)
+                                    .addComponent(paymentDate)
+                                    .addComponent(amount)))
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,19 +155,19 @@ public class ViewProductLine extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(productLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(customerNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelproductName)
-                    .addComponent(textDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(checkNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelproductLine)
-                    .addComponent(htmlDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(paymentDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonAdd)
@@ -176,16 +183,12 @@ public class ViewProductLine extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-        ControllerProductLine.addProductLine();
-    }//GEN-LAST:event_buttonAddActionPerformed
-
     private void buttonModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifyActionPerformed
-        ControllerProductLine.modifyProductLine();
+        ControllerPayment.modifyPayment();
     }//GEN-LAST:event_buttonModifyActionPerformed
 
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
-        ControllerProductLine.deleteProductLine(productLine.getText());
+        ControllerPayment.deletePayment(checkNumber.getText());
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
@@ -193,20 +196,24 @@ public class ViewProductLine extends javax.swing.JFrame {
         DefaultTableModel data = (DefaultTableModel) table.getModel();
 
         if (selectedRow >= 0) {
-            String productLineValue = data.getValueAt(selectedRow, 0).toString();
-            String textDescriptionValue = data.getValueAt(selectedRow, 1).toString();
-            String htmlDescriptionValue = data.getValueAt(selectedRow, 2) != null  ? data.getValueAt(selectedRow, 2).toString() : "";
-            String imageValue = data.getValueAt(selectedRow, 3) != null ? data.getValueAt(selectedRow, 3).toString() : "";
+            String customerNumberValue = data.getValueAt(selectedRow, 0).toString();
+            String checkNumberValue = data.getValueAt(selectedRow, 1).toString();
+            String paymentDateValue = data.getValueAt(selectedRow, 2).toString();
+            String amountValue = data.getValueAt(selectedRow, 3).toString();
 
-            productLine.setText(productLineValue);
-            textDescription.setText(textDescriptionValue);
-            htmlDescription.setText(htmlDescriptionValue);
-            image.setText(imageValue);
+            customerNumber.setText(customerNumberValue);
+            checkNumber.setText(checkNumberValue);
+            paymentDate.setText(paymentDateValue);
+            amount.setText(amountValue);
         }
     }//GEN-LAST:event_tableMouseClicked
 
     private void tableComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_tableComponentShown
     }//GEN-LAST:event_tableComponentShown
+
+    private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
+        ControllerPayment.addPayment();
+    }//GEN-LAST:event_buttonAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,50 +232,51 @@ public class ViewProductLine extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewProductLine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewProductLine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewProductLine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewProductLine.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewProductLine().setVisible(true);
+                new ViewPayment().setVisible(true);
             }
         });
     }
 
-    public JTextField getHtmlDescription() {
-        return htmlDescription;
+    public JTextField getAmount() {
+        return amount;
     }
 
-    public JTextField getImage() {
-        return image;
+    public JTextField getCheckNumber() {
+        return checkNumber;
     }
 
-    public JTextField getProductLine() {
-        return productLine;
+    public JTextField getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public JTextField getPaymentDate() {
+        return paymentDate;
     }
 
     public JTable getTable() {
         return table;
     }
 
-    public JTextField getTextDescription() {
-        return textDescription;
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField amount;
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JButton buttonModify;
-    private javax.swing.JTextField htmlDescription;
-    private javax.swing.JTextField image;
+    private javax.swing.JTextField checkNumber;
+    private javax.swing.JTextField customerNumber;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -276,8 +284,7 @@ public class ViewProductLine extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelproductLine;
     private javax.swing.JLabel labelproductName;
-    private javax.swing.JTextField productLine;
+    private javax.swing.JTextField paymentDate;
     private javax.swing.JTable table;
-    private javax.swing.JTextField textDescription;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ import view.ViewProductLine;
  * @author veliz
  */
 public class ControllerProductLine {
-        public static ViewProductLine view = new ViewProductLine();  
+    public static ViewProductLine view = new ViewProductLine();  
     
     public static void show() {
         
@@ -44,9 +44,9 @@ public class ControllerProductLine {
         DB.addProductLine(productLine);
     }
     
-    public static void modifyProductLine(String selectedProductCode) {
+    public static void modifyProductLine() {
         ProductLine productLine = buildProductLineInstance();
-        DB.modifyProductLine(productLine, selectedProductCode);
+        DB.modifyProductLine(productLine);
     }
     
     public static void deleteProductLine(String selectedProductCode) {
