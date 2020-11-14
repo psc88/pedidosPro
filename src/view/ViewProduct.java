@@ -375,7 +375,7 @@ public class ViewProduct extends javax.swing.JFrame {
     }
 
     public JTextField getQuantityInStock() {
-        return buyPrice;
+        return quantityInStock;
     }
 
     public JTextField getBuyPrice() {

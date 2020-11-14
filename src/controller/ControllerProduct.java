@@ -30,7 +30,6 @@ public class ControllerProduct {
         view.setVisible(false);
     };
     
-    // TODO: Fix instance issues when select a product from the list
     public static Product buildProductInstance() {
         Product product = new Product();
         

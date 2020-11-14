@@ -21,7 +21,8 @@ public class ControllerMain {
         DB.getConnection();
         
         // ControllerLogin.mostrar();
-        ControllerProduct.show();
+        //ControllerProduct.show();
+        ControllerProductLine.show();
         //mostrar();
     }
     
