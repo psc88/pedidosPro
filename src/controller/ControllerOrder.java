@@ -1,6 +1,8 @@
 
 package controller;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.*;
@@ -15,14 +17,32 @@ public class ControllerOrder {
     public static double totalVenta;
     public static int linea = 1;
     
+    public static Order buildOrderInstance(){
+        Order order = new Order();
+        
+        order.setOrderNumber(Integer.parseInt( view.getOrder().getText() ));
+        order.setOrderDate(view.getDate().getText() );
+        order.setRequiredDate(view.getDateRequired().getText());
+        order.setShippedDate(view.getDateRequired().getText());
+        order.setStatus("pending");
+        order.setCustomerNumber( Integer.parseInt(view.getCustomer().getText()) );
+        
+        
+        return order;
+    } 
+            
+    
     public static void focusLostCode() throws SQLException{
         ResultSet res = DB.getProduct(view.getCode().getText());
- 
+        
         if (res.next()){
+            double venta;
             String nombre = res.getString("productName");
-            String precio = res.getString("buyPrice");
+            double precio = res.getDouble("buyPrice");
+            venta = Math.round(precio + (precio * 0.3));
+            
             view.getDescription().setText(nombre);
-            view.getPrice().setText(precio);
+            view.getPrice().setText(""+venta);
         }
     }
     
@@ -30,29 +50,17 @@ public class ControllerOrder {
         
         double precio = Double.parseDouble(view.getPrice().getText() );
         int cantidad = Integer.parseInt(view.getQuantity().getText() );
-        double subtotal = precio * cantidad;
+        double subtotal = Math.round(precio * cantidad);
         view.getSubtotal().setText(""+subtotal);
         
     }
     
-    public static void actionAdd(){
-        boolean existe = false;  
-        try {
-            Connection c = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/classicmodels","root","");
-            PreparedStatement s = c.prepareStatement(
-                    "select * from customers where customerNumber=? ");
-            s.setString(1,view.getCustomer().getText());
-            ResultSet res = s.executeQuery();
-            
-            existe=res.next();
-            
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public static void actionAddTable() throws SQLException{
+        boolean existe = false;
+        ResultSet res = DB.addTable(view.getCustomer().getText());
+        existe=res.next();
         
         if(existe){
-        
         Object[] fila = new Object[6];
         fila[0] = linea++;
         fila[1] = view.getCode().getText();
@@ -62,42 +70,32 @@ public class ControllerOrder {
         fila[5] = view.getSubtotal().getText();
         
         Double precio = Double.parseDouble(view.getSubtotal().getText());
-        totalVenta = totalVenta + precio;
+        totalVenta = Math.round(totalVenta + precio);
         view.getTotalOrder().setText(""+ totalVenta);
         
         DefaultTableModel datos = (DefaultTableModel) view.getOrdertable().getModel();
         datos.addRow(fila);
         
-        }
-             
-        else
-        {
+        }else {
             JOptionPane.showMessageDialog(null,"Cliente no existente.","Warning",JOptionPane.WARNING_MESSAGE);
         }
-            
-        
-        
-    
     }
     
-    public static void buttonFinishOrder( Order o){
-        try {
-            Connection c = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/classicmodels","root","");
+    public static void addOrder(){
+        
+        Order order = buildOrderInstance();
+        DB.addOrder(order);
+       
+        for (int i=0; i<view.getOrdertable().getModel().getRowCount(); i++ ){
+            OrderDetail orderdetail = new OrderDetail();
             
-            PreparedStatement s = c.prepareStatement(
-                    "INSERT INTO orders (orderNumber,orderDate,customerNumber) values (?,?,?) ");
+            orderdetail.setOrderLineNumber(Integer.parseInt(view.getOrdertable().getModel().getValueAt(i, 0).toString()));
+            orderdetail.setProductCode(view.getOrdertable().getModel().getValueAt(i, 1).toString());
+            orderdetail.setPriceEach(Double.parseDouble(view.getOrdertable().getModel().getValueAt(i, 3).toString()));
+            orderdetail.setQuantityOrdered(Integer.parseInt(view.getOrdertable().getModel().getValueAt(i, 4).toString()));
+            orderdetail.setOrderNumber(Integer.parseInt(view.getOrder().getText()));
             
-//            s.setString(1, o.getgetDate());
-//            s.setDouble(2, prod.getPrecio());
-            
-            s.executeUpdate();
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+            DB.addOrderDetails(orderdetail);
+        } 
     }
-    
-    
-    
 }

@@ -11,14 +11,24 @@ public class Order {
     private String comments;
     private int customerNumber; 
 
+    @Override
+    public String toString() {
+        return "Order{" + "orderNumber=" + orderNumber + ", orderDate=" + orderDate + ", customerNumber=" + customerNumber + '}';
+    }
+
     public Order() {
     }
 
-    public Order(int orderNumber, String orderDate, int customerNumber) {
+    public Order(int orderNumber, String orderDate, String requiredDate, String shippedDate, String status, String comments, int customerNumber) {
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
+        this.requiredDate = requiredDate;
+        this.shippedDate = shippedDate;
+        this.status = status;
+        this.comments = comments;
         this.customerNumber = customerNumber;
     }
+    
 
     public int getOrderNumber() {
         return orderNumber;

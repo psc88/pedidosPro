@@ -29,6 +29,12 @@ public class OrderDetail {
         this.orderLineNumber = orderLineNumber;
     }
 
+    @Override
+    public String toString() {
+        return "OrderDetail{" + "orderNumber=" + orderNumber + ", productCode=" + productCode + ", quantityOrdered=" + quantityOrdered + ", priceEach=" + priceEach + ", orderLineNumber=" + orderLineNumber + '}';
+    }
+    
+
     public int getOrderNumber() {
         return orderNumber;
     }

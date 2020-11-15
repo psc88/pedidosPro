@@ -1,6 +1,7 @@
 
 package controller;
 
+import javax.swing.JOptionPane;
 import view.*;
 
 
@@ -18,7 +19,7 @@ public class ControllerLogin {
             ocultar();
             ControllerOrder.mostrar();
         } else {
-            System.out.println("usuario o calve incorrecta");  
+            JOptionPane.showMessageDialog(null,"Usuario y/o Clave Incorrecta.","Warning",JOptionPane.WARNING_MESSAGE);
         }
         
     }
