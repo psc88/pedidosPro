@@ -112,6 +112,11 @@ public class ViewMasterOrder extends javax.swing.JFrame {
         });
 
         jButton5.setText("Editar linea de detalle");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Ordenes");
 
@@ -261,6 +266,10 @@ public class ViewMasterOrder extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         ControllerMasterOrder.deleteDetail(line.getText());
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        ControllerMasterOrder.modifyOrderDetail();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

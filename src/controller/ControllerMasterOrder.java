@@ -28,11 +28,25 @@ public class ControllerMasterOrder {
     public static Order buildOrderInstance(){
         Order order = new Order();
         
-        order.setOrderNumber(Integer.parseInt( view.getRequired().getText() ));
-        order.setOrderDate(view.getStatusOrder().getText() );
+        order.setOrderNumber(Integer.parseInt( view.getNumberOrder().getText() ));
+        order.setRequiredDate(view.getRequired().getText() );
+        order.setStatus (view.getStatusOrder().getText() );
         
         return order;
-    } 
+    }
+    
+    public static OrderDetail buildOrderDetailInstance(){
+        OrderDetail orderdetail = new OrderDetail();
+        
+        orderdetail.setOrderLineNumber(Integer.parseInt(view.getLine().getText()));
+        orderdetail.setQuantityOrdered(Integer.parseInt(view.getQuantity().getText()) );
+        
+        return orderdetail;
+    }
+    
+    public static void cleanTableOrder(){
+        
+    }
     
     public static void masterConsultant(){
         
@@ -105,13 +119,23 @@ public class ControllerMasterOrder {
     public static void modifyOrders(String selectedOrderNumber) {
         Order order = buildOrderInstance();
         DB.modifyOrder(order, selectedOrderNumber);
+        
+        masterConsultant();
     }
     
     public static void delete(String selectedOrderNumber){
         DB.deleteOrderDetail(selectedOrderNumber);
         DB.deleteOrder(selectedOrderNumber);
     }
+    
     public static void deleteDetail(String selectedline){
         DB.deletelineOrder(selectedline);
+    }
+    
+    public static void modifyOrderDetail(){
+        OrderDetail orderdetail = buildOrderDetailInstance();
+        DB.modifyOrderDetail(orderdetail);
+        
+        selectOrder();
     }
 }

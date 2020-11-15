@@ -413,12 +413,15 @@ public class DB {
         }
     }
     public static void modifyOrder(Order order, String selectedOrderNumber) {
-        try {
-        PreparedStatement statement = connection.prepareStatement("UPDATE orders SET orderNumber = ?, requiredDate = ?, status = ?");
         
-            statement.setString(1, selectedOrderNumber);
-            statement.setString(2, order.getRequiredDate());
-            statement.setString(3, order.getStatus());
+        try {
+        PreparedStatement statement = connection.prepareStatement("UPDATE orders SET requiredDate = ?, status = ? WHERE orderNumber =?");
+        
+            statement.setString(1, order.getRequiredDate());
+            statement.setString(2, order.getStatus());
+            statement.setInt(3, order.getOrderNumber());
+            
+            statement.executeUpdate();
         
         } catch (Exception e) {
             System.out.println("Error al actualizar producto!");
@@ -436,8 +439,6 @@ public class DB {
             System.out.println(e);
         }
     }
-    public static void getOrder() {}
-    
     
     public static void addOrderDetails(OrderDetail orderdetail){
                 
@@ -459,73 +460,90 @@ public class DB {
         } 
     }
     
-        public static ArrayList<Order> getMasterConsultant(){
-            ArrayList<Order> orders = new ArrayList<Order>();
-            
-            try {
-                PreparedStatement statement = connection.prepareStatement("select * from orders");
-                ResultSet res = statement.executeQuery();
-                
-                while (res.next()){
-                    Order order = new Order();
-                    order.setOrderNumber(res.getInt("orderNumber") );
-                    order.setOrderDate(res.getString("orderDate") );
-                    order.setRequiredDate(res.getString("requiredDate") );
-                    order.setShippedDate(res.getString("shippedDate") );
-                    order.setStatus(res.getString("status") );
-                    order.setCustomerNumber(res.getInt("customerNumber"));
-                    
-                    orders.add(order);
-                }
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-            return orders;
-        }
-        
-        public static ArrayList<OrderDetail> getaddDetail(String orderNumber){
-            ArrayList<OrderDetail> ordersdetails = new ArrayList<OrderDetail>();
-            
-            try {
-                PreparedStatement statement = connection.prepareStatement("select * from orderdetails where orderNumber="+orderNumber);
-                ResultSet res = statement.executeQuery();
-                while (res.next()){
-                    OrderDetail orderdetail = new OrderDetail();
-                    
-                    orderdetail.setOrderNumber(res.getInt("orderNumber") );
-                    orderdetail.setProductCode(res.getString("productCode") );
-                    orderdetail.setQuantityOrdered(Integer.parseInt(res.getString("quantityOrdered")) );
-                    orderdetail.setPriceEach(Double.parseDouble(res.getString("priceEach")) );
-                    orderdetail.setOrderLineNumber(Integer.parseInt(res.getString("orderLineNumber")) );
-                
+    public static ArrayList<Order> getMasterConsultant(){
+        ArrayList<Order> orders = new ArrayList<Order>();
 
-                    ordersdetails.add(orderdetail);
-                }
-            } catch (Exception e) {
-                System.out.println(e);
+        try {
+            PreparedStatement statement = connection.prepareStatement("select * from orders");
+            ResultSet res = statement.executeQuery();
+
+            while (res.next()) {
+                Order order = new Order();
+                order.setOrderNumber(res.getInt("orderNumber"));
+                order.setOrderDate(res.getString("orderDate"));
+                order.setRequiredDate(res.getString("requiredDate"));
+                order.setShippedDate(res.getString("shippedDate"));
+                order.setStatus(res.getString("status"));
+                order.setCustomerNumber(res.getInt("customerNumber"));
+
+                orders.add(order);
             }
-            return ordersdetails;
+        } catch (Exception e) {
+            System.out.println(e);
         }
         
-        public static void deleteOrderDetail(String selectedOrderNumber) {
+        return orders;
+    }
+        
+    public static ArrayList<OrderDetail> getaddDetail(String orderNumber){
+        ArrayList<OrderDetail> ordersdetails = new ArrayList<OrderDetail>();
+
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM orderdetails WHERE orderNumber = ?");
-                        
-            statement.setString(1, selectedOrderNumber);
+            PreparedStatement statement = connection.prepareStatement("select * from orderdetails where orderNumber=" + orderNumber);
+            ResultSet res = statement.executeQuery();
+            while (res.next()) {
+                OrderDetail orderdetail = new OrderDetail();
+
+                orderdetail.setOrderNumber(res.getInt("orderNumber"));
+                orderdetail.setProductCode(res.getString("productCode"));
+                orderdetail.setQuantityOrdered(Integer.parseInt(res.getString("quantityOrdered")));
+                orderdetail.setPriceEach(Double.parseDouble(res.getString("priceEach")));
+                orderdetail.setOrderLineNumber(Integer.parseInt(res.getString("orderLineNumber")));
+
+                ordersdetails.add(orderdetail);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return ordersdetails;
+    }
+        
+    public static void deleteOrderDetail(String selectedOrderNumber) {
+        try {
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM orderdetails WHERE orderNumber = ?");
+
+             statement.setString(1, selectedOrderNumber);
+             statement.execute();
+        } catch (Exception e) {
+             System.out.println("Error al eliminar el producto!");
+             System.out.println(e);
+        }
+    }  
+    
+    public static void deletelineOrder(String selectedline) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM orderdetails WHERE orderLineNumber = ?");
+
+            statement.setString(1, selectedline);
             statement.execute();
         } catch (Exception e) {
             System.out.println("Error al eliminar el producto!");
             System.out.println(e);
         }
-    }   
-        public static void deletelineOrder(String selectedline) {
+    }
+        
+    public static void modifyOrderDetail(OrderDetail orderdetail) {
+        
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM orderdetails WHERE orderLineNumber = ?");
-                        
-            statement.setString(1, selectedline);
-            statement.execute();
+            PreparedStatement statement = connection.prepareStatement("UPDATE orderdetails SET quantityOrdered = ? WHERE orderLineNumber =?");
+
+            statement.setInt(1, orderdetail.getQuantityOrdered());
+            statement.setInt(2, orderdetail.getOrderLineNumber());
+
+            statement.executeUpdate();
+
         } catch (Exception e) {
-            System.out.println("Error al eliminar el producto!");
+            System.out.println("Error al actualizar producto!");
             System.out.println(e);
         }
     }
