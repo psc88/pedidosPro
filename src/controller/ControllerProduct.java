@@ -133,4 +133,9 @@ public class ControllerProduct {
         view.getBuyPrice().setText("");
         view.getMSRP().setText("");
     }
+    
+    public static void searchProductLine() {
+        ControllerSearchProductLine.setViewProduct(view);
+        ControllerSearchProductLine.show();
+    }
 }

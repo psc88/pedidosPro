@@ -47,11 +47,15 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="productName" alignment="0" max="32767" attributes="0"/>
-                              <Component id="productLine" alignment="0" max="32767" attributes="0"/>
                               <Component id="productScale" alignment="0" max="32767" attributes="0"/>
                               <Component id="productVendor" alignment="0" max="32767" attributes="0"/>
                               <Component id="productDescription" alignment="0" max="32767" attributes="0"/>
                               <Component id="productCode" alignment="0" pref="330" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="productLine" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="buttonSearch" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Component id="jLabel3" alignment="1" max="32767" attributes="0"/>
@@ -73,7 +77,7 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
                       <Component id="buttonAdd" min="-2" pref="99" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonModify" min="-2" pref="99" max="-2" attributes="0"/>
@@ -106,6 +110,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelproductLine" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="productLine" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -127,7 +132,7 @@
                   <Component id="labelproductLine3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="quantityInStock" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="7" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelproductLine2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buyPrice" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -344,6 +349,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonModifyActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonSearch">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar l&#xed;nea de prod."/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSearchActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

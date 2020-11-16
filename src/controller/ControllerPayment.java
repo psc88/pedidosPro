@@ -7,8 +7,10 @@ package controller;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import model.Customer;
 import model.DB;
 import model.Payment;
+import view.ViewSearchCustomer;
 import view.ViewPayment;
 
 /**
@@ -98,7 +100,6 @@ public class ControllerPayment {
             view.getPaymentDate().setText(paymentDateValue);
             view.getAmount().setText(amountValue);
         }
-        
     }
     
     public static void clearFields() {
@@ -106,5 +107,10 @@ public class ControllerPayment {
         view.getCheckNumber().setText("");
         view.getPaymentDate().setText("");
         view.getAmount().setText("");
+    }
+    
+    public static void searchCustomer() {
+        ControllerSearchCustomer.setViewPayment(view);
+        ControllerSearchCustomer.show();
     }
 }

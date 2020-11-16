@@ -72,7 +72,7 @@ public class ControllerProductLine {
         data.setNumRows(0);
 
         for (int i = 0; i < productLines.size(); i++) {
-            Object[] row = new Object[9];
+            Object[] row = new Object[4];
 
             row[0] = productLines.get(i).getProductLine();
             row[1] = productLines.get(i).getTextDescription();

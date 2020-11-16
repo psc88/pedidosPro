@@ -212,6 +212,30 @@ public class DB {
         return productLines;
     }
     
+    public static ArrayList<ProductLine> searchProductLine(String productLineSearch) {
+        ArrayList<ProductLine> productLines = new ArrayList<ProductLine>();
+        
+        try {
+            PreparedStatement s = connection.prepareStatement("select * from productLines WHERE productLine LIKE '"+ productLineSearch +"%' ORDER BY productLine DESC");            
+            ResultSet res = s.executeQuery();
+
+            while(res.next()) {
+                ProductLine productLine = new ProductLine();
+                productLine.setProductLine(res.getString("productLine"));
+                productLine.setTextDescription(res.getString("textDescription"));
+                productLine.setHtmlDescription(res.getString("htmlDescription"));
+                productLine.setImage(res.getString("image"));         
+                
+                productLines.add(productLine);
+            }            
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al buscar línea de producto!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+        }
+        
+        return productLines;
+    }
+    
     // Payment methods
     public static void addPayment(Payment payment) {       
         try {
@@ -378,6 +402,7 @@ public class DB {
         
         return customers;
     }
+
     public static ResultSet addTable(String customerNumber) {
         ResultSet res = null;
         
@@ -545,6 +570,40 @@ public class DB {
         } catch (Exception e) {
             System.out.println("Error al actualizar producto!");
             System.out.println(e);
-        } 
+        }
+    }
+    
+    public static ArrayList<Customer> searchCustomer(String customerName) {
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+        
+        try {
+            PreparedStatement s = connection.prepareStatement("select * from customers WHERE customerName LIKE '"+ customerName +"%' ORDER BY customerNumber DESC");            
+            ResultSet res = s.executeQuery();
+
+            while(res.next()) {
+                Customer customer = new Customer();
+                
+                customer.setCustomerNumber(res.getInt("customerNumber"));
+                customer.setCustomerName(res.getString("customerName"));
+                customer.setContactFirstName(res.getString("contactFirstName"));
+                customer.setContactLastName(res.getString("contactLastName"));
+                customer.setPhone(res.getString("phone"));
+                customer.setAddressLine1(res.getString("addressLine1"));
+                customer.setAddressLine2(res.getString("addressLine2"));
+                customer.setCity(res.getString("city"));
+                customer.setStateField(res.getString("state"));
+                customer.setPostalCode(res.getString("postalCode"));
+                customer.setCountry(res.getString("country"));
+                customer.setSalesRepEmployeeNumber(res.getInt("salesRepEmployeeNumber"));
+                customer.setCreditLimit(res.getDouble("creditLimit"));
+
+                customers.add(customer);
+            }            
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al buscar cliente!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+        }
+        
+        return customers;
     }
 }
