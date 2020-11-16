@@ -545,6 +545,6 @@ public class DB {
         } catch (Exception e) {
             System.out.println("Error al actualizar producto!");
             System.out.println(e);
-        }
+        } 
     }
 }

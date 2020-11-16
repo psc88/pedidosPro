@@ -126,10 +126,14 @@ public class ControllerMasterOrder {
     public static void delete(String selectedOrderNumber){
         DB.deleteOrderDetail(selectedOrderNumber);
         DB.deleteOrder(selectedOrderNumber);
+        
+        masterConsultant();
+        selectOrder();
     }
     
     public static void deleteDetail(String selectedline){
         DB.deletelineOrder(selectedline);
+        
     }
     
     public static void modifyOrderDetail(){

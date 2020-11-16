@@ -256,7 +256,7 @@ public class ViewOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_codeFocusLost
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-        ControllerOrder.actionAdd();
+        //ControllerOrder.actionAdd();
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void quantityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quantityFocusLost

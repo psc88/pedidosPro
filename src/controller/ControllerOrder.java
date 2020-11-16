@@ -22,8 +22,8 @@ public class ControllerOrder {
         
         order.setOrderNumber(Integer.parseInt( view.getOrder().getText() ));
         order.setOrderDate(view.getDate().getText() );
-        order.setRequiredDate(view.getDateRequired().getText());
-        order.setShippedDate(view.getDateRequired().getText());
+//        order.setRequiredDate(view.getDateRequired().getText());
+//        order.setShippedDate(view.getDateRequired().getText());
         order.setStatus("pending");
         order.setCustomerNumber( Integer.parseInt(view.getCustomer().getText()) );
         

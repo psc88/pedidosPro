@@ -20,17 +20,16 @@ public class ControllerMain {
     public static void main(String[] args) {        
         DB.getConnection();
         
-        // ControllerLogin.mostrar();
-        // ControllerProduct.show();
-        //ControllerProductLine.show();
-        // ControllerPayment.show();
-        // ControllerCustomer.show();
-        // show();
-        //mostrar();
         //ControllerOrder.mostrar();
         //ControllerLogin.mostrar();
         //ControllerProduct.show();
         ControllerMasterOrder.show();
+        // ControllerLogin.mostrar();
+        //ControllerProduct.show();
+        //ControllerProductLine.show();
+        //ControllerPayment.show();
+        // ControllerCustomer.show();
+        // show();
     }
     
     public static ViewMain view = new ViewMain();
