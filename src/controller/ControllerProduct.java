@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.*;
 import model.*;
 import view.*;
@@ -50,7 +51,7 @@ public class ControllerProduct {
     public static void addProduct() {
         Product product = buildProductInstance();
         DB.addProduct(product);
-        
+        JOptionPane.showMessageDialog(null,"Producto agregado","AVISO",JOptionPane.WARNING_MESSAGE);
         clearFields();
         getProductsAndInsertInTable();
     }
@@ -66,7 +67,7 @@ public class ControllerProduct {
     public static void deleteProduct() {
         String productCode = view.getProductCode().getText();
         DB.deleteProduct(productCode);
-        
+        JOptionPane.showMessageDialog(null,"Producto eliminado","AVISO",JOptionPane.WARNING_MESSAGE);
         clearFields();
         getProductsAndInsertInTable();
     }

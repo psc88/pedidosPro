@@ -12,6 +12,7 @@ public class ControllerOrder {
     public static ViewOrder view = new ViewOrder();
     
     public static void mostrar() { view.setVisible(true); };
+    public static void hide() { view.setVisible(false); };
     
     public static double totalVenta;
     public static int linea = 1;
@@ -56,11 +57,9 @@ public class ControllerOrder {
     }
     
     public static void actionAddTable() throws SQLException{
-        boolean existe = false;
-        ResultSet res = DB.addTable(view.getCustomer().getText());
-        existe=res.next();
-        
-        if(existe){
+        int q = Integer.parseInt(view.getQuantity().getText());
+        int s = Integer.parseInt(view.getStock().getText());
+        if( q <= s ){
         Object[] fila = new Object[6];
         fila[0] = linea++;
         fila[1] = view.getProductCode().getText();
@@ -77,7 +76,7 @@ public class ControllerOrder {
         datos.addRow(fila);
         
         }else {
-            JOptionPane.showMessageDialog(null,"Cliente no existente.","Warning",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Stock insuficiente","Warning",JOptionPane.WARNING_MESSAGE);
         }
     }
     
@@ -99,6 +98,7 @@ public class ControllerOrder {
             
         } 
         cleanOrder();
+        ControllerPayment.show();
     }
     
     public static void cleanOrder(){

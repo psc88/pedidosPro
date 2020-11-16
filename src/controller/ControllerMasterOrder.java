@@ -5,6 +5,7 @@
  */
 package controller;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.DB;
 import model.Order;
@@ -126,7 +127,7 @@ public class ControllerMasterOrder {
     public static void delete(String selectedOrderNumber){
         DB.deleteOrderDetail(selectedOrderNumber);
         DB.deleteOrder(selectedOrderNumber);
-        
+        JOptionPane.showMessageDialog(null,"Pedido eliminado","AVISO",JOptionPane.WARNING_MESSAGE);
         masterConsultant();
         selectOrder();
     }

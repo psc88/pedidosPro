@@ -61,6 +61,7 @@ public class ControllerSearchProduct {
         viewOrder.getProductCode().setText(view.getProductCode().getText());
         viewOrder.getProductName().setText(view.getProductName().getText());
         viewOrder.getPrice().setText(view.getProductPrice().getText());
+        viewOrder.getStock().setText(view.getStockPresent().getText());
         // Default quantity is 1
         viewOrder.getQuantity().setText("1");
         viewOrder.getSubtotal().setText(view.getProductPrice().getText());
@@ -81,10 +82,12 @@ public class ControllerSearchProduct {
             String productCode = data.getValueAt(selectedRow, 0).toString();
             String productName = data.getValueAt(selectedRow, 1).toString();
             String productPrice = data.getValueAt(selectedRow, 7).toString();
+            String stock = data.getValueAt(selectedRow, 6).toString();
 
             view.getProductCode().setText(productCode);
             view.getProductName().setText(productName);
             view.getProductPrice().setText(productPrice);
+            view.getStockPresent().setText(stock);
         }
     }
     

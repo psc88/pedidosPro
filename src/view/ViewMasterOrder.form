@@ -151,7 +151,6 @@
                       <Component id="jScrollPane2" min="-2" pref="216" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="codeProduct" min="-2" max="-2" attributes="0"/>
@@ -404,7 +403,7 @@
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\psc88\Pictures\flecha-izquierda.png"/>
+          <Image iconType="3" name="/Image/flecha-izquierda.png"/>
         </Property>
       </Properties>
       <Events>

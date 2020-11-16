@@ -430,21 +430,21 @@ public class DB {
         return customers;
     }
 
-    public static ResultSet addTable(String customerNumber) {
-        ResultSet res = null;
-        
-         try {
-            PreparedStatement s = connection.prepareStatement("select * from customers where customerNumber=? ");
-            s.setString(1,(customerNumber));
-            res = s.executeQuery();
-            
-            
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-         
-        return res;
-    }
+//    public static ResultSet addTable(String customerNumber) {
+//        ResultSet res = null;
+//        
+//         try {
+//            PreparedStatement s = connection.prepareStatement("select * from customers where customerNumber=? ");
+//            s.setString(1,(customerNumber));
+//            res = s.executeQuery();
+//            
+//            
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//         
+//        return res;
+//    }
     
     public static void addOrder(Order order) {
         try {

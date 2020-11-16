@@ -6,6 +6,7 @@
 package controller;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Customer;
 import model.DB;
@@ -48,6 +49,8 @@ public class ControllerPayment {
         
         clearFields();
         getPaymentsAndInsertInTable();
+        JOptionPane.showMessageDialog(null,"Pago exitoso","(=",JOptionPane.WARNING_MESSAGE);
+        hide();
     }
     
     public static void modifyPayment() {
