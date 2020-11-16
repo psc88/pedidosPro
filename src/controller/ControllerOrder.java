@@ -22,8 +22,8 @@ public class ControllerOrder {
         
         order.setOrderNumber(Integer.parseInt( view.getOrder().getText() ));
         order.setOrderDate(view.getDate().getText() );
-//        order.setRequiredDate(view.getDateRequired().getText());
-//        order.setShippedDate(view.getDateRequired().getText());
+        order.setRequiredDate(view.getRequireddate().getText());
+        order.setShippedDate(view.getRequireddate().getText());
         order.setStatus("pending");
         order.setCustomerNumber( Integer.parseInt(view.getCustomer().getText()) );
         
@@ -96,6 +96,22 @@ public class ControllerOrder {
             orderdetail.setOrderNumber(Integer.parseInt(view.getOrder().getText()));
             
             DB.addOrderDetails(orderdetail);
+            
         } 
+        cleanOrder();
+    }
+    
+    public static void cleanOrder(){
+        view.getCode().setText("");
+        view.getDescription().setText("");
+        view.getCustomer().setText("");
+        view.getOrder().setText("");
+        view.getPrice().setText("");
+        view.getQuantity().setText("");
+        view.getSubtotal().setText("");
+        view.getRequireddate().setText("");
+        
+        DefaultTableModel data = (DefaultTableModel) view.getOrdertable().getModel();
+        data.setNumRows(0);
     }
 }
