@@ -26,13 +26,12 @@ public class ControllerOrder {
         order.setStatus("pending");
         order.setCustomerNumber( Integer.parseInt(view.getCustomer().getText()) );
         
-        
         return order;
     } 
             
-    
+    // TODO: CHECK TO RESTORE THIS VALIDATION
     public static void focusLostCode() throws SQLException{
-        ResultSet res = DB.getProduct(view.getCode().getText());
+        ResultSet res = DB.getProduct(view.getProductCode().getText());
         
         if (res.next()){
             double venta;
@@ -40,18 +39,20 @@ public class ControllerOrder {
             double precio = res.getDouble("buyPrice");
             venta = Math.round(precio + (precio * 0.3));
             
-            view.getDescription().setText(nombre);
+            view.getProductName().setText(nombre);
             view.getPrice().setText(""+venta);
         }
     }
     
+    public static double calculateSubtotal() {
+        double price = Double.parseDouble(view.getPrice().getText() );
+        int quantity = Integer.parseInt(view.getQuantity().getText() );
+        return Math.round(price * quantity);
+    }
+    
     public static void focusLostSubtotal(){
-        
-        double precio = Double.parseDouble(view.getPrice().getText() );
-        int cantidad = Integer.parseInt(view.getQuantity().getText() );
-        double subtotal = Math.round(precio * cantidad);
+        double subtotal = calculateSubtotal();
         view.getSubtotal().setText(""+subtotal);
-        
     }
     
     public static void actionAddTable() throws SQLException{
@@ -62,8 +63,8 @@ public class ControllerOrder {
         if(existe){
         Object[] fila = new Object[6];
         fila[0] = linea++;
-        fila[1] = view.getCode().getText();
-        fila[2] = view.getDescription().getText();
+        fila[1] = view.getProductCode().getText();
+        fila[2] = view.getProductName().getText();
         fila[3] = view.getPrice().getText();
         fila[4] = view.getQuantity().getText();
         fila[5] = view.getSubtotal().getText();
@@ -101,16 +102,26 @@ public class ControllerOrder {
     }
     
     public static void cleanOrder(){
-        view.getCode().setText("");
-        view.getDescription().setText("");
+        view.getProductCode().setText("");
+        view.getProductName().setText("");
         view.getCustomer().setText("");
         view.getOrder().setText("");
         view.getPrice().setText("");
         view.getQuantity().setText("");
         view.getSubtotal().setText("");
         view.getRequireddate().setText("");
-        
+        view.getTotalOrder().setText("");
         DefaultTableModel data = (DefaultTableModel) view.getOrdertable().getModel();
         data.setNumRows(0);
+    }
+    
+    public static void searchCustomer() {
+        ControllerSearchCustomer.setViewOrder(view);
+        ControllerSearchCustomer.show();
+    }
+    
+    public static void searchProduct() {
+        ControllerSearchProduct.setViewOrder(view);
+        ControllerSearchProduct.show();
     }
 }

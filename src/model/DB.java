@@ -5,12 +5,10 @@
  */
 package model;
 
-import static controller.ControllerOrder.view;
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -122,6 +120,35 @@ public class DB {
             }            
         } catch (SQLException e) {
             showMessageDialog(null, "Error al obtener productos!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+        }
+        
+        return products;
+    }
+    
+    public static ArrayList<Product> searchProduct(String productCode) {
+        ArrayList<Product> products = new ArrayList<Product>();
+        
+        try {
+            PreparedStatement s = connection.prepareStatement("select * from products WHERE productCode LIKE '"+ productCode +"%' ORDER BY productCode DESC");            
+            ResultSet res = s.executeQuery();
+
+            while(res.next()) {
+                Product product = new Product();
+                product.setProductCode(res.getString("productCode"));
+                product.setProductName(res.getString("productName"));
+                product.setProductLine(res.getString("productLine"));
+                product.setProductScale(res.getString("productScale"));
+                product.setProductVendor(res.getString("productVendor"));
+                product.setProductDescription(res.getString("productDescription"));
+                product.setQuantityInStock(res.getInt("quantityInStock"));
+                product.setBuyPrice(res.getDouble("buyPrice"));
+                product.setMSRP(res.getDouble("MSRP"));                
+                
+                products.add(product);
+            }            
+        } catch (SQLException e) {
+            showMessageDialog(null, "Error al buscar producto!", "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
         

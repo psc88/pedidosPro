@@ -20,13 +20,6 @@ public class ControllerMain {
     public static void main(String[] args) {        
         DB.getConnection();
         
-        // ControllerOrder.mostrar();
-        // ControllerProduct.show();
-        // ControllerMasterOrder.show();
-        // ControllerProduct.show();
-        // ControllerProductLine.show();
-        // ControllerPayment.show();
-        // ControllerCustomer.show();
         show();
     }
     

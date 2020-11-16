@@ -69,7 +69,12 @@ public class ControllerSearchCustomer {
     }
     
     public static void confirmSelectionAndClose() {
-        viewPayment.getCustomerNumber().setText(view.getCustomerNumber().getText());
+        if (viewPayment != null) {
+            viewPayment.getCustomerNumber().setText(view.getCustomerNumber().getText());
+        } else {
+            viewOrder.getCustomer().setText(view.getCustomerNumber().getText());
+        }
+        
         hide();
     }
     
