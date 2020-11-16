@@ -23,11 +23,11 @@ public class ControllerMain {
         // ControllerOrder.mostrar();
         // ControllerProduct.show();
         // ControllerMasterOrder.show();
-        ControllerProduct.show();
+        // ControllerProduct.show();
         // ControllerProductLine.show();
         // ControllerPayment.show();
         // ControllerCustomer.show();
-        // show();
+        show();
     }
     
     public static ViewMain view = new ViewMain();

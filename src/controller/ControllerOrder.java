@@ -12,7 +12,6 @@ public class ControllerOrder {
     public static ViewOrder view = new ViewOrder();
     
     public static void mostrar() { view.setVisible(true); };
-    public static void ocultar() { view.setVisible(false); };
     
     public static double totalVenta;
     public static int linea = 1;
