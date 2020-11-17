@@ -8,9 +8,13 @@ package view;
 import controller.ControllerProduct;
 import controller.ControllerMain;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -20,12 +24,13 @@ import javax.swing.table.DefaultTableModel;
  * @author veliz
  */
 public class ViewProduct extends javax.swing.JFrame {
-
+    FondoProducts fondo = new FondoProducts();
     /**
      * Creates new form ViewProduct
      * @throws java.sql.SQLException
      */
     public ViewProduct() {
+        this.setContentPane(fondo);
         initComponents();
     }
 
@@ -69,26 +74,60 @@ public class ViewProduct extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Century", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century", 1, 26)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Producto");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Código");
 
+        productCode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        productName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelproductName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelproductName.setForeground(new java.awt.Color(255, 255, 255));
         labelproductName.setText("Nombre");
 
+        productLine.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        productScale.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Escala");
 
+        labelproductLine.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelproductLine.setForeground(new java.awt.Color(255, 255, 255));
         labelproductLine.setText("Linea de producto");
 
+        productVendor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        productDescription.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Descripción");
 
+        labelproductLine1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelproductLine1.setForeground(new java.awt.Color(255, 255, 255));
         labelproductLine1.setText("Proveedor");
 
+        buyPrice.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        MSRP.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("MSRP");
 
+        labelproductLine2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelproductLine2.setForeground(new java.awt.Color(255, 255, 255));
         labelproductLine2.setText("Precio de compra");
 
-        jLabel3.setFont(new java.awt.Font("Century", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Listado");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -106,6 +145,10 @@ public class ViewProduct extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
 
+        quantityInStock.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelproductLine3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelproductLine3.setForeground(new java.awt.Color(255, 255, 255));
         labelproductLine3.setText("Stock");
 
         buttonClearFields.setText("Limpiar campos");
@@ -163,7 +206,7 @@ public class ViewProduct extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(labelproductName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,14 +234,14 @@ public class ViewProduct extends javax.swing.JFrame {
                                 .addComponent(labelproductLine2))
                             .addGap(47, 47, 47)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(buyPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                                .addComponent(buyPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                                 .addComponent(MSRP)))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(labelproductLine3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(75, 75, 75)
                             .addComponent(quantityInStock)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
+                        .addGap(0, 30, Short.MAX_VALUE)
                         .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(buttonModify, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -403,4 +446,19 @@ public class ViewProduct extends javax.swing.JFrame {
     public JTable getTable() {
         return table;
     }
+}
+
+class FondoProducts extends JPanel{
+    
+    @Override
+    public void paint(Graphics g){
+        Image imagen = new ImageIcon(getClass().getResource("/image/fondo2.jpg")).getImage();
+        
+        g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        
+        setOpaque(false);
+        
+        super.paint(g);
+    }
+    
 }

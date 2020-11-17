@@ -26,7 +26,6 @@ public class ControllerOrder {
         order.setShippedDate(view.getRequireddate().getText());
         order.setStatus("pending");
         order.setCustomerNumber( Integer.parseInt(view.getCustomer().getText()) );
-        
         return order;
     } 
             

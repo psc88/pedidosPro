@@ -6,8 +6,12 @@
 package view;
 
 import controller.ControllerPayment;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -17,11 +21,12 @@ import javax.swing.table.DefaultTableModel;
  * @author veliz
  */
 public class ViewPayment extends javax.swing.JFrame {
-
+    FondoPaument fondo = new FondoPaument();
     /**
      * Creates new form ViewPayment
      */
     public ViewPayment() {
+        this.setContentPane(fondo);
         initComponents();
         
         Date date = new Date();
@@ -56,18 +61,27 @@ public class ViewPayment extends javax.swing.JFrame {
         buttonDelete = new javax.swing.JButton();
         buttonModify = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        labelproductLine.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelproductLine.setForeground(new java.awt.Color(255, 255, 255));
         labelproductLine.setText("Fecha");
 
-        jLabel1.setFont(new java.awt.Font("Century", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pago");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nº de cliente");
 
-        jLabel3.setFont(new java.awt.Font("Century", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Listado");
+
+        customerNumber.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,10 +98,21 @@ public class ViewPayment extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
 
+        checkNumber.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelproductName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelproductName.setForeground(new java.awt.Color(255, 255, 255));
         labelproductName.setText("Nº de cheque");
 
+        paymentDate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        amount.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Monto");
 
+        buttonClearFields.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonClearFields.setText("Limpiar Campos");
         buttonClearFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +120,7 @@ public class ViewPayment extends javax.swing.JFrame {
             }
         });
 
+        buttonAdd.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonAdd.setText("Agregar");
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +128,7 @@ public class ViewPayment extends javax.swing.JFrame {
             }
         });
 
+        buttonDelete.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonDelete.setText("Eliminar");
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +136,7 @@ public class ViewPayment extends javax.swing.JFrame {
             }
         });
 
+        buttonModify.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         buttonModify.setText("Modificar");
         buttonModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,12 +144,15 @@ public class ViewPayment extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Buscar cliente");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/pago.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,32 +171,35 @@ public class ViewPayment extends javax.swing.JFrame {
                             .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(buttonClearFields))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(labelproductName, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(labelproductLine)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(amount)
-                                    .addComponent(paymentDate)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(customerNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton1))
-                                    .addComponent(checkNumber))))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(amount)
+                                .addComponent(paymentDate)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(customerNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton1))
+                                .addComponent(checkNumber)
+                                .addComponent(jLabel5)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -291,10 +325,25 @@ public class ViewPayment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelproductLine;
     private javax.swing.JLabel labelproductName;
     private javax.swing.JTextField paymentDate;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+}
+class FondoPaument extends JPanel{
+    
+    @Override
+    public void paint(Graphics g){
+        Image imagen = new ImageIcon(getClass().getResource("/image/fondo2.jpg")).getImage();
+        
+        g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        
+        setOpaque(false);
+        
+        super.paint(g);
+    }
+    
 }

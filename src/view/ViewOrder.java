@@ -11,21 +11,27 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controller.*;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 /**
  *
  * @author veliz
  */
 // TODO: Add a new view with master form to sealect an order and then show products. See class 15.
 public class ViewOrder extends javax.swing.JFrame {
-
+    FondoOrder fondoOrder = new FondoOrder();
     /**
      * Creates new form ViewOrder
      */
     public ViewOrder() {
+        
+        this.setContentPane(fondoOrder);
         initComponents();
         
         Date fecha = new Date();
@@ -77,26 +83,52 @@ public class ViewOrder extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Fecha: ");
 
         date.setEditable(false);
+        date.setBackground(new java.awt.Color(209, 202, 202));
+        date.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Código prod.");
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre prod.");
 
+        productCode.setBackground(new java.awt.Color(209, 202, 202));
+        productCode.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        productName.setBackground(new java.awt.Color(209, 202, 202));
+        productName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("N° Cliente ");
 
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("N° de Orden ");
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Precio prod.");
 
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Cantidad prod.");
 
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Subtotal venta");
 
-        price.setEditable(false);
+        customer.setBackground(new java.awt.Color(209, 202, 202));
+        customer.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
+        order.setBackground(new java.awt.Color(209, 202, 202));
+        order.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        price.setEditable(false);
+        price.setBackground(new java.awt.Color(209, 202, 202));
+        price.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        quantity.setBackground(new java.awt.Color(209, 202, 202));
+        quantity.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         quantity.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 quantityFocusLost(evt);
@@ -104,9 +136,11 @@ public class ViewOrder extends javax.swing.JFrame {
         });
 
         subtotal.setEditable(false);
+        subtotal.setBackground(new java.awt.Color(209, 202, 202));
+        subtotal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
-        buttonAdd.setBackground(new java.awt.Color(102, 255, 102));
-        buttonAdd.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        buttonAdd.setBackground(new java.awt.Color(212, 233, 215));
+        buttonAdd.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         buttonAdd.setText("Agregar detalle de pedido ");
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +148,7 @@ public class ViewOrder extends javax.swing.JFrame {
             }
         });
 
+        ordertable.setBackground(new java.awt.Color(209, 202, 202));
         ordertable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -124,8 +159,9 @@ public class ViewOrder extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(ordertable);
 
-        buttonFinishOrder.setBackground(new java.awt.Color(116, 137, 243));
+        buttonFinishOrder.setBackground(new java.awt.Color(212, 233, 215));
         buttonFinishOrder.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
+        buttonFinishOrder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/shopping.png"))); // NOI18N
         buttonFinishOrder.setText("Finalizar Pedido");
         buttonFinishOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,14 +170,21 @@ public class ViewOrder extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Total: ");
 
-        totalOrder.setBackground(new java.awt.Color(186, 247, 203));
+        totalOrder.setEditable(false);
+        totalOrder.setBackground(new java.awt.Color(209, 202, 202));
+        totalOrder.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Fecha requerida");
 
-        buttonClearFields.setBackground(new java.awt.Color(102, 255, 102));
-        buttonClearFields.setFont(new java.awt.Font("Century", 0, 14)); // NOI18N
+        requireddate.setBackground(new java.awt.Color(209, 202, 202));
+        requireddate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        buttonClearFields.setBackground(new java.awt.Color(212, 233, 215));
+        buttonClearFields.setFont(new java.awt.Font("Century", 1, 14)); // NOI18N
         buttonClearFields.setText("Limpiar datos");
         buttonClearFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,8 +193,10 @@ public class ViewOrder extends javax.swing.JFrame {
         });
 
         jLabel11.setFont(new java.awt.Font("Century", 0, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Venta");
 
+        buttonSearchCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/buscarCliente.png"))); // NOI18N
         buttonSearchCustomer.setText("Buscar cliente");
         buttonSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +204,7 @@ public class ViewOrder extends javax.swing.JFrame {
             }
         });
 
+        buttonSearchProduct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/buscarProducto.png"))); // NOI18N
         buttonSearchProduct.setText("Buscar producto");
         buttonSearchProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,9 +212,12 @@ public class ViewOrder extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Stock");
 
         stock.setEditable(false);
+        stock.setBackground(new java.awt.Color(209, 202, 202));
+        stock.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/flecha-izquierda.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -197,8 +246,7 @@ public class ViewOrder extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(customer, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(buttonSearchCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(order, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(date)
                             .addComponent(requireddate, javax.swing.GroupLayout.Alignment.TRAILING)))
@@ -207,14 +255,12 @@ public class ViewOrder extends javax.swing.JFrame {
                             .addComponent(productCode)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(productName)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonSearchProduct))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(245, 245, 245))))
+                                .addComponent(productName, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonSearchProduct))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -234,19 +280,19 @@ public class ViewOrder extends javax.swing.JFrame {
                                 .addGap(51, 51, 51))
                             .addComponent(subtotal)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonClearFields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonFinishOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(buttonFinishOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -431,6 +477,7 @@ public class ViewOrder extends javax.swing.JFrame {
     public JTextField getTotalOrder() {
         return totalOrder;
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
@@ -466,3 +513,18 @@ public class ViewOrder extends javax.swing.JFrame {
     private javax.swing.JTextField totalOrder;
     // End of variables declaration//GEN-END:variables
 }
+class FondoOrder extends JPanel{
+    
+    @Override
+    public void paint(Graphics g){
+        Image imagen = new ImageIcon(getClass().getResource("/image/fondo2.jpg")).getImage();
+        
+        g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        
+        setOpaque(false);
+        
+        super.paint(g);
+    }
+    
+}
+

@@ -7,6 +7,10 @@ package view;
 
 import controller.ControllerProductLine;
 import controller.ControllerMain;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -16,11 +20,12 @@ import javax.swing.table.DefaultTableModel;
  * @author veliz
  */
 public class ViewProductLine extends javax.swing.JFrame {
-
+    FondoProductsLine fondo = new FondoProductsLine();
     /**
      * Creates new form ViewProductLine
      */
     public ViewProductLine() {
+        this.setContentPane(fondo);
         initComponents();
     }
 
@@ -292,4 +297,18 @@ public class ViewProductLine extends javax.swing.JFrame {
     private javax.swing.JTable table;
     private javax.swing.JTextField textDescription;
     // End of variables declaration//GEN-END:variables
+}
+class FondoProductsLine extends JPanel{
+    
+    @Override
+    public void paint(Graphics g){
+        Image imagen = new ImageIcon(getClass().getResource("/image/fondo2.jpg")).getImage();
+        
+        g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+        
+        setOpaque(false);
+        
+        super.paint(g);
+    }
+    
 }
