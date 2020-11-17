@@ -58,12 +58,25 @@ public class ViewProductLine extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Century", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Century", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Línea de Producto");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Línea de producto");
 
+        productLine.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        textDescription.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        labelproductName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelproductName.setForeground(new java.awt.Color(255, 255, 255));
         labelproductName.setText("Descripción");
+
+        htmlDescription.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+
+        image.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         buttonAdd.setText("Agregar");
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +85,8 @@ public class ViewProductLine extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Ruta de imagen");
 
         buttonModify.setText("Modificar");
@@ -81,6 +96,8 @@ public class ViewProductLine extends javax.swing.JFrame {
             }
         });
 
+        labelproductLine.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelproductLine.setForeground(new java.awt.Color(255, 255, 255));
         labelproductLine.setText("Descripcion HTML");
 
         buttonDelete.setText("Eliminar");
@@ -90,7 +107,8 @@ public class ViewProductLine extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Century", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Century", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Listado");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -130,7 +148,7 @@ public class ViewProductLine extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -139,9 +157,9 @@ public class ViewProductLine extends javax.swing.JFrame {
                         .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(buttonClearFields))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

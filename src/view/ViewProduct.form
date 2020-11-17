@@ -67,9 +67,9 @@
                               <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                               <Component id="labelproductLine2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buyPrice" pref="334" max="32767" attributes="0"/>
+                              <Component id="buyPrice" max="32767" attributes="0"/>
                               <Component id="MSRP" max="32767" attributes="0"/>
                           </Group>
                       </Group>
