@@ -9,6 +9,11 @@ import view.*;
 import model.*;
 
 public class ControllerOrder {
+    public static void showView(){
+        ControllerMain.hide();
+        ControllerOrder.mostrar();
+    }
+    
     public static ViewOrder view = new ViewOrder();
     
     public static void mostrar() { view.setVisible(true); };
@@ -16,6 +21,12 @@ public class ControllerOrder {
     
     public static double totalVenta;
     public static int linea = 1;
+    public static int ajustar;
+    
+    public static void returnView(){
+        ControllerMain.show();
+        hide();
+    }
     
     public static Order buildOrderInstance(){
         Order order = new Order();
@@ -73,6 +84,9 @@ public class ControllerOrder {
         
         DefaultTableModel datos = (DefaultTableModel) view.getOrdertable().getModel();
         datos.addRow(fila);
+        
+        ajustar = s - q;
+        view.getStock().setText(""+ajustar);
         
         }else {
             JOptionPane.showMessageDialog(null,"Stock insuficiente","Warning",JOptionPane.WARNING_MESSAGE);

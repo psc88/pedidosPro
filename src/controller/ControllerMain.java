@@ -19,7 +19,6 @@ public class ControllerMain {
      */
     public static void main(String[] args) {        
         DB.getConnection();
-        
         show();
     }
     

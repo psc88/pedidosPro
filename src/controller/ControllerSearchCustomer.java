@@ -30,6 +30,7 @@ public class ControllerSearchCustomer {
         view.setVisible(false);
     };
     
+    
     // Used to update parent view fields
     public static void setViewPayment(ViewPayment windowPayment) {
         viewPayment = windowPayment;

@@ -16,6 +16,11 @@ import model.OrderDetail;
  * @author psc88
  */
 public class ControllerMasterOrder {
+    public static void showView(){
+        ControllerMain.hide();
+        ControllerMasterOrder.show();
+    }
+    
     public static ViewMasterOrder  view = new ViewMasterOrder();
     
     public static void show() {
@@ -25,6 +30,10 @@ public class ControllerMasterOrder {
     public static void hide() {
         view.setVisible(false);
     };
+    public static void returnView(){
+        ControllerMain.show();
+        hide();
+    }
     
     public static Order buildOrderInstance(){
         Order order = new Order();

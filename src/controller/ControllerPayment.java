@@ -19,6 +19,11 @@ import view.ViewPayment;
  * @author veliz
  */
 public class ControllerPayment {
+    public static void showView(){
+        ControllerMain.hide();
+        ControllerPayment.show();
+    }
+    
     public static ViewPayment view = new ViewPayment();  
     
     public static void show() {
@@ -31,6 +36,10 @@ public class ControllerPayment {
     public static void hide() {
         view.setVisible(false);
     };
+    public static void returnView(){
+        ControllerMain.show();
+        hide();
+    }
     
     public static Payment buildPaymentInstance() {
         Payment payment = new Payment();

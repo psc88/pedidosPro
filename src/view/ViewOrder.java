@@ -387,8 +387,7 @@ public class ViewOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonSearchProductActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ControllerMain.show();
-        ControllerOrder.hide();
+        ControllerOrder.returnView();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

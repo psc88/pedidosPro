@@ -15,6 +15,11 @@ import view.ViewCustomer;
  * @author veliz
  */
 public class ControllerCustomer {
+    public static void showView(){
+        ControllerMain.hide();
+        ControllerCustomer.show();
+    }
+    
     public static ViewCustomer view = new ViewCustomer();  
     
     public static void show() {
@@ -26,6 +31,10 @@ public class ControllerCustomer {
     public static void hide() {
         view.setVisible(false);
     };
+    public static void returnView(){
+        ControllerMain.show();
+        hide();
+    }
     
     public static Customer buildCustomerInstance() {
         Customer customer = new Customer();

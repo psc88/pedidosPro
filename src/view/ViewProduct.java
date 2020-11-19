@@ -337,8 +337,7 @@ public class ViewProduct extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonSearchActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ControllerMain.show();
-        ControllerProduct.hide();
+        ControllerProduct.returnView();
     }//GEN-LAST:event_jButton1ActionPerformed
     
     /**

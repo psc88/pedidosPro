@@ -16,6 +16,11 @@ import view.ViewProductLine;
  * @author veliz
  */
 public class ControllerProductLine {
+    public static void showView(){
+        ControllerMain.hide();
+        ControllerProductLine.show();
+    }
+    
     public static ViewProductLine view = new ViewProductLine();  
     
     public static void show() {
@@ -28,6 +33,10 @@ public class ControllerProductLine {
     public static void hide() {
         view.setVisible(false);
     };
+    public static void returnView(){
+        ControllerMain.show();
+        hide();
+    }
     
     public static ProductLine buildProductLineInstance() {
         ProductLine productLine = new ProductLine();

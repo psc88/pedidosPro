@@ -19,6 +19,11 @@ import view.*;
  * @author veliz
  */
 public class ControllerProduct {
+    public static void showView(){
+        ControllerMain.hide();
+        ControllerProduct.show();
+    }
+    
     public static ViewProduct view = new ViewProduct();  
     
     public static void show() {
@@ -31,6 +36,10 @@ public class ControllerProduct {
     public static void hide() {
         view.setVisible(false);
     };
+    public static void returnView(){
+        ControllerMain.show();
+        hide();
+    }
     
     public static Product buildProductInstance() {
         Product product = new Product();
