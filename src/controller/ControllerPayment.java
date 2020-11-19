@@ -116,4 +116,9 @@ public class ControllerPayment {
         ControllerSearchCustomer.setViewPayment(view);
         ControllerSearchCustomer.show();
     }
+    
+    public static void setCustomerNumberAndAmount(int customerNumber, double amount) {
+        view.getCustomerNumber().setText(customerNumber + "");
+        view.getAmount().setText(amount + "");
+    }
 }

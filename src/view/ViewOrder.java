@@ -363,11 +363,7 @@ public class ViewOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-        try {
-            ControllerOrder.actionAddTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewOrder.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ControllerOrder.actionAddTable();
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void quantityFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_quantityFocusLost

@@ -55,7 +55,7 @@ public class ControllerOrder {
         view.getSubtotal().setText(""+subtotal);
     }
     
-    public static void actionAddTable() throws SQLException{
+    public static void actionAddTable(){
         int q = Integer.parseInt(view.getQuantity().getText());
         int s = Integer.parseInt(view.getStock().getText());
         if( q <= s ){
@@ -97,6 +97,8 @@ public class ControllerOrder {
             
         } 
         cleanOrder();
+        
+        ControllerPayment.setCustomerNumberAndAmount(order.getCustomerNumber(), totalVenta);
         ControllerPayment.show();
     }
     

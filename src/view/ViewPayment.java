@@ -34,7 +34,7 @@ public class ViewPayment extends javax.swing.JFrame {
         SimpleDateFormat conversor = new SimpleDateFormat(strDateFormat);
         paymentDate.setText(conversor.format(date));
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
